@@ -97,14 +97,13 @@
 							} else if ( treeNode.level == 1 ) { //分支节点
 								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;"  onclick="window.location.href=\'${pageContext.request.contextPath}/permission/toUpdate.do?id='+treeNode.id+'\'" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
 								if (treeNode.children.length == 0) {
-									s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deletePermission('+treeNode.id+',\''+treeNode.name+'\')" >&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
+									s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deletePermission(\''+treeNode.id+'\',\''+treeNode.name+'\')" >&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
 								}
 								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="window.location.href=\'${pageContext.request.contextPath}/permission/toAdd.do?id='+treeNode.id+'\'" >&nbsp;&nbsp;<i class="fa fa-fw fa-plus rbg "></i></a>';
 							} else if ( treeNode.level == 2 ) { //叶子节点
 								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;"  onclick="window.location.href=\'${pageContext.request.contextPath}/permission/toUpdate.do?id='+treeNode.id+'\'" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
-								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deletePermission('+treeNode.id+',\''+treeNode.name+'\')">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
+								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deletePermission(\''+treeNode.id+'\',\''+treeNode.name+'\')">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
 							}
-			
 							s += '</span>';
 							aObj.after(s);
 						},
@@ -112,48 +111,36 @@
 							$("#btnGroup"+treeNode.tId).remove();
 						}
                }
-
             };
+        	$.fn.zTree.init($("#treeDemo"),setting); //异步加载许可树的数据
 
-            
 
-        	$.fn.zTree.init($("#treeDemo"), setting); //异步加载许可树的数据
-			function deletePermission(id,name){
-            	layer.confirm("您确认删除【"+name+"】许可吗？",  {icon: 3, title:'提示'}, function(cindex){
-    			    layer.close(cindex);
-   	            	$.ajax({
-   	            		type:"POST",
-   	            		url:"${pageContext.request.contextPath}/permission/doDelete.do",
-   	            		data:{
-   	            			id:id
-   	            		},
-   	            		beforeSend:function(){
-   	            			loadingIndex = layer.msg('正在删除许可数据,请稍后！', {icon: 16});
-   	            			return true ;
-   	            		},
-   	            		success:function(result){
-   	            			layer.close(loadingIndex);
 
-   	            				layer.msg("删除成功！", {time:1000, icon:6});
-   	            				//window.location.href="${pageContext.request.contextPath}/permission/index.htm";
-
-   	            				//读取当前树对象
-   	            				var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
-
-   	            				//刷新当前树对象的数据（异步）：树形结构数据必须异步加载
-   	            				treeObj.reAsyncChildNodes(null, "refresh");
-                           /* if(result==1){
-   	            				}else{
-   	            				layer.msg("删除失败！", {time:1000, icon:5, shift:6});
-   	            			}*/
-   	            		}            		
-   	            	});
-    	           
-    			    
-    			}, function(cindex){
-    			    layer.close(cindex);
-    			});
-            	
+            function deletePermission(id,name){
+                layer.confirm("您确认删除【"+name+"】许可吗？",  {icon: 3, title:'提示'}, function(cindex){
+                    layer.close(cindex);
+                    $.ajax({
+                        type:"POST",
+                        url:"${pageContext.request.contextPath}/permission/doDelete.do",
+                        data:{
+                            id:id
+                        },
+                        beforeSend:function(){
+                            loadingIndex = layer.msg('正在删除许可数据,请稍后！', {icon: 16});
+                            return true ;
+                        },
+                        success:function(result){
+                            layer.close(loadingIndex);
+                                layer.msg("删除成功！", {time:1000, icon:6});
+                                //读取当前树对象
+                                var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+                                //刷新当前树对象的数据（异步）：树形结构数据必须异步加载
+                                treeObj.reAsyncChildNodes(null, "refresh");
+                        }
+                    });
+                }, function(cindex){
+                    layer.close(cindex);
+                });
             }
         </script>
   </body>

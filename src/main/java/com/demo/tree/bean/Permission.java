@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 @Document(collection="permission")
 public class Permission {
-    private Integer id;
+    private String id;
 
-    private Integer pid;
+    private String pid;
 
     private String name;
 
@@ -16,7 +16,7 @@ public class Permission {
 
     private String url;
 
-    public Permission(Integer id, Integer pid, String name, String icon, String url) {
+    public Permission(String id, String pid, String name, String icon, String url) {
         this.id = id;
         this.pid = pid;
         this.name = name;
@@ -25,6 +25,7 @@ public class Permission {
     }
 
     public Permission() {
+
     }
 
     private boolean open = true ;
@@ -33,19 +34,19 @@ public class Permission {
     
     private List<Permission> children = new ArrayList<Permission>();
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Integer getPid() {
+    public String getPid() {
         return pid;
     }
 
-    public void setPid(Integer pid) {
+    public void setPid(String pid) {
         this.pid = pid;
     }
 

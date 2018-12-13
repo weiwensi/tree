@@ -44,7 +44,7 @@ public class MongoDBController {
         //1.一次性查询数据库，避免频繁与数据库交互，提高系统性能。
         List<Permission> allPermission = mongoDBService.queryAllPermission();
         //2.采用并行for循环代替嵌套for循环，大大提高了系统性能。
-        Map<Integer,Permission> allMap = new HashMap<Integer,Permission>();
+        Map<String,Permission> allMap = new HashMap<String,Permission>();
         for (Permission permission : allPermission) {
             allMap.put(permission.getId(), permission);
         }
@@ -53,7 +53,7 @@ public class MongoDBController {
                 root = permission;
             }else {
                 //组合父与子之间的关系
-                Integer pid = permission.getPid();
+                String pid = permission.getPid();
                 Permission parent = allMap.get(pid);
                 parent.getChildren().add(permission);
             }
@@ -69,7 +69,7 @@ public class MongoDBController {
     }
     //跳到修改页面，进行数据的回显
     @RequestMapping("/permission/toUpdate.do")
-    public String  toUpdate(Integer id,Map<String,Object> map){
+    public String  toUpdate(String id,Map<String,Object> map){
         Permission permission =  mongoDBService.getPermissionByID(id);
         map.put("permission",permission);
         return  "update";
@@ -83,8 +83,8 @@ public class MongoDBController {
     //删除
     @ResponseBody
     @RequestMapping("permission/doDelete.do")
-    public Object  doDelete( @RequestParam Integer id){
-        int date=mongoDBService.deletePermission(id);
+    public Object  doDelete( @RequestParam String id){
+           mongoDBService.deletePermission(id);
         return "redirect:/permission/loadData.do";
     }
 
@@ -113,17 +113,14 @@ public class MongoDBController {
         db.permission.save({"id":5,"pid":3,"name":"角色维护","icon":"glyphicon glyphicon-king","url":"role/index.htm"});
         db.permission.save({"id":6,"pid":3,"name":"许可维护","icon":"glyphicon glyphicon-lock","url":"permission/index.htm"});*/
 
-        Permission permission = new Permission( 1,null,"系统权限菜单","glyphicon glyphicon-th-list","ffff");
-        Permission permission1 = new Permission(2,1,"控制面板","glyphicon glyphicon-dashboard","ffff");
-        Permission permission2 = new Permission(3,1,"权限管理","glyphicon glyphicon glyphicon-tasks","ffff");
-        Permission permission3 = new Permission(4,3,"用户维护","glyphicon glyphicon glyphicon-tasks","ffff");
-        Permission permission4 = new Permission(5,3,"角色维护","glyphicon glyphicon-king","ffff");
-        Permission permission5 = new Permission(6,3,"许可维护","glyphicon glyphicon-king","ffff");
-
-
-
-
+        Permission permission0 = new Permission("1",null,"系统权限菜单","glyphicon glyphicon-th-list","ffff");
+        Permission permission1 = new Permission("2","1","控制面板","glyphicon glyphicon-dashboard","ffff");
+        Permission permission2 = new Permission("3","1","权限管理","glyphicon glyphicon glyphicon-tasks","ffff");
+        Permission permission3 = new Permission("4","3","用户维护","glyphicon glyphicon glyphicon-tasks","ffff");
+        Permission permission4 = new Permission("5","3","角色维护","glyphicon glyphicon-king","ffff");
+        Permission permission5 = new Permission("6","3","许可维护","glyphicon glyphicon-king","ffff");
         List<Permission> pems=new ArrayList<Permission>();
+        pems.add(permission0);
         pems.add(permission1);
         pems.add(permission2);
         pems.add(permission3);
@@ -138,8 +135,8 @@ public class MongoDBController {
     @ResponseBody
     @RequestMapping("doUpdate.do")
     public  String udate(){
-        Permission permission = new Permission(6,3,"许可维护","glyphicon glyphicon-king","ffff");
-        mongoDBService.doUpdate(permission);
+       /* Permission permission = new Permission(6,3,"许可维护","glyphicon glyphicon-king","ffff");
+        mongoDBService.doUpdate(permission);*/
         return "ok";
     }
 
@@ -151,5 +148,14 @@ public class MongoDBController {
         List<Permission> permissions = mongoDBService.queryAllPermission();
         return permissions;
     }
+
+    //测试删除
+    @ResponseBody
+    @RequestMapping("dolete.do")
+    public  String  delete(@RequestParam String id){
+        mongoDBService.deletePermission(id);
+        return "ok";
+    }
+
 
 }
