@@ -118,14 +118,9 @@
             
 
         	$.fn.zTree.init($("#treeDemo"), setting); //异步加载许可树的数据
-    		
-    		
 			function deletePermission(id,name){
-            	
             	layer.confirm("您确认删除【"+name+"】许可吗？",  {icon: 3, title:'提示'}, function(cindex){
     			    layer.close(cindex);
-    			    
-    			    
    	            	$.ajax({
    	            		type:"POST",
    	            		url:"${pageContext.request.contextPath}/permission/doDelete.do",
@@ -138,18 +133,19 @@
    	            		},
    	            		success:function(result){
    	            			layer.close(loadingIndex);
-   	            			if(result==1){
+
    	            				layer.msg("删除成功！", {time:1000, icon:6});
    	            				//window.location.href="${pageContext.request.contextPath}/permission/index.htm";
-   	            			
+
    	            				//读取当前树对象
    	            				var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
 
    	            				//刷新当前树对象的数据（异步）：树形结构数据必须异步加载
    	            				treeObj.reAsyncChildNodes(null, "refresh");
-   	            			}else{
+                           /* if(result==1){
+   	            				}else{
    	            				layer.msg("删除失败！", {time:1000, icon:5, shift:6});
-   	            			}
+   	            			}*/
    	            		}            		
    	            	});
     	           

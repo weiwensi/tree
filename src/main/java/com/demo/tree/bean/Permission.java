@@ -1,8 +1,10 @@
 package com.demo.tree.bean;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Document(collection="permission")
 public class Permission {
     private Integer id;
 
@@ -13,7 +15,18 @@ public class Permission {
     private String icon;
 
     private String url;
-    
+
+    public Permission(Integer id, Integer pid, String name, String icon, String url) {
+        this.id = id;
+        this.pid = pid;
+        this.name = name;
+        this.icon = icon;
+        this.url = url;
+    }
+
+    public Permission() {
+    }
+
     private boolean open = true ;
     
     private boolean checked = false ;

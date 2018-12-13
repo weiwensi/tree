@@ -17,6 +17,7 @@ import java.util.Map;
 
 @Controller
 public class IndexController {
+/*
 
     //这是使用mysql作为数据库的注入
     @Resource(name="permissionServiceImpl")
@@ -103,6 +104,7 @@ public class IndexController {
         return date;
     }
 
+*/
 
 
 
