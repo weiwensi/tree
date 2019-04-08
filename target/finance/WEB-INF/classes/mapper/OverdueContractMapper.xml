@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.finance.dao.OverdueContractMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.finance.bean.OverdueContract" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="LOAN_CONTRACT_NUM" property="loanContractNum" jdbcType="VARCHAR" />
+    <result column="OVERDUE_STATUS" property="overdueStatus" jdbcType="VARCHAR" />
+    <result column="OVERDUE_DAYS" property="overdueDays" jdbcType="INTEGER" />
+    <result column="INSTALMENT_CNT" property="instalmentCnt" jdbcType="INTEGER" />
+    <result column="ALL_DAYS" property="allDays" jdbcType="INTEGER" />
+    <result column="ALL_INSTALMENT_CNT" property="allInstalmentCnt" jdbcType="INTEGER" />
+    <result column="ALL_NUMBER" property="allNumber" jdbcType="INTEGER" />
+    <result column="PRINCIPAL_INTEREST" property="principalInterest" jdbcType="INTEGER" />
+    <result column="ALL_FORFEIT" property="allForfeit" jdbcType="INTEGER" />
+    <result column="ALL_AMERCE" property="allAmerce" jdbcType="INTEGER" />
+    <result column="ALL_SHOULD" property="allShould" jdbcType="INTEGER" />
+    <result column="ALL_INDEED" property="allIndeed" jdbcType="INTEGER" />
+    <result column="CURRENT_REPAY" property="currentRepay" jdbcType="INTEGER" />
+    <result column="ALL_REPAYMENT_AMOUNT" property="allRepaymentAmount" jdbcType="INTEGER" />
+    <result column="FIRST_DATE" property="firstDate" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="VARCHAR" />
+    <result column="SERIAL_START_DATE" property="serialStartDate" jdbcType="VARCHAR" />
+    <result column="OVERDUE_HISTORY" property="overdueHistory" jdbcType="VARCHAR" />
+    <result column="COMPUTE_DATE" property="computeDate" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TYPE" property="updateType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, LOAN_CONTRACT_NUM, OVERDUE_STATUS, OVERDUE_DAYS, INSTALMENT_CNT, ALL_DAYS, ALL_INSTALMENT_CNT, 
+    ALL_NUMBER, PRINCIPAL_INTEREST, ALL_FORFEIT, ALL_AMERCE, ALL_SHOULD, ALL_INDEED, 
+    CURRENT_REPAY, ALL_REPAYMENT_AMOUNT, FIRST_DATE, START_DATE, SERIAL_START_DATE, OVERDUE_HISTORY, 
+    COMPUTE_DATE, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, UPDATE_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.atguigu.finance.bean.OverdueContractExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from nplm_overdue_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from nplm_overdue_contract
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from nplm_overdue_contract
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atguigu.finance.bean.OverdueContractExample" >
+    delete from nplm_overdue_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.finance.bean.OverdueContract" >
+    insert into nplm_overdue_contract (id, LOAN_CONTRACT_NUM, OVERDUE_STATUS, 
+      OVERDUE_DAYS, INSTALMENT_CNT, ALL_DAYS, 
+      ALL_INSTALMENT_CNT, ALL_NUMBER, PRINCIPAL_INTEREST, 
+      ALL_FORFEIT, ALL_AMERCE, ALL_SHOULD, 
+      ALL_INDEED, CURRENT_REPAY, ALL_REPAYMENT_AMOUNT, 
+      FIRST_DATE, START_DATE, SERIAL_START_DATE, 
+      OVERDUE_HISTORY, COMPUTE_DATE, CREATOR, 
+      CREATE_TIME, UPDATER, UPDATE_TIME, 
+      UPDATE_TYPE)
+    values (#{id,jdbcType=VARCHAR}, #{loanContractNum,jdbcType=VARCHAR}, #{overdueStatus,jdbcType=VARCHAR}, 
+      #{overdueDays,jdbcType=INTEGER}, #{instalmentCnt,jdbcType=INTEGER}, #{allDays,jdbcType=INTEGER}, 
+      #{allInstalmentCnt,jdbcType=INTEGER}, #{allNumber,jdbcType=INTEGER}, #{principalInterest,jdbcType=INTEGER}, 
+      #{allForfeit,jdbcType=INTEGER}, #{allAmerce,jdbcType=INTEGER}, #{allShould,jdbcType=INTEGER}, 
+      #{allIndeed,jdbcType=INTEGER}, #{currentRepay,jdbcType=INTEGER}, #{allRepaymentAmount,jdbcType=INTEGER}, 
+      #{firstDate,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, #{serialStartDate,jdbcType=VARCHAR}, 
+      #{overdueHistory,jdbcType=VARCHAR}, #{computeDate,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.finance.bean.OverdueContract" >
+    insert into nplm_overdue_contract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loanContractNum != null" >
+        LOAN_CONTRACT_NUM,
+      </if>
+      <if test="overdueStatus != null" >
+        OVERDUE_STATUS,
+      </if>
+      <if test="overdueDays != null" >
+        OVERDUE_DAYS,
+      </if>
+      <if test="instalmentCnt != null" >
+        INSTALMENT_CNT,
+      </if>
+      <if test="allDays != null" >
+        ALL_DAYS,
+      </if>
+      <if test="allInstalmentCnt != null" >
+        ALL_INSTALMENT_CNT,
+      </if>
+      <if test="allNumber != null" >
+        ALL_NUMBER,
+      </if>
+      <if test="principalInterest != null" >
+        PRINCIPAL_INTEREST,
+      </if>
+      <if test="allForfeit != null" >
+        ALL_FORFEIT,
+      </if>
+      <if test="allAmerce != null" >
+        ALL_AMERCE,
+      </if>
+      <if test="allShould != null" >
+        ALL_SHOULD,
+      </if>
+      <if test="allIndeed != null" >
+        ALL_INDEED,
+      </if>
+      <if test="currentRepay != null" >
+        CURRENT_REPAY,
+      </if>
+      <if test="allRepaymentAmount != null" >
+        ALL_REPAYMENT_AMOUNT,
+      </if>
+      <if test="firstDate != null" >
+        FIRST_DATE,
+      </if>
+      <if test="startDate != null" >
+        START_DATE,
+      </if>
+      <if test="serialStartDate != null" >
+        SERIAL_START_DATE,
+      </if>
+      <if test="overdueHistory != null" >
+        OVERDUE_HISTORY,
+      </if>
+      <if test="computeDate != null" >
+        COMPUTE_DATE,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loanContractNum != null" >
+        #{loanContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueStatus != null" >
+        #{overdueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueDays != null" >
+        #{overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="instalmentCnt != null" >
+        #{instalmentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="allDays != null" >
+        #{allDays,jdbcType=INTEGER},
+      </if>
+      <if test="allInstalmentCnt != null" >
+        #{allInstalmentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="allNumber != null" >
+        #{allNumber,jdbcType=INTEGER},
+      </if>
+      <if test="principalInterest != null" >
+        #{principalInterest,jdbcType=INTEGER},
+      </if>
+      <if test="allForfeit != null" >
+        #{allForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="allAmerce != null" >
+        #{allAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="allShould != null" >
+        #{allShould,jdbcType=INTEGER},
+      </if>
+      <if test="allIndeed != null" >
+        #{allIndeed,jdbcType=INTEGER},
+      </if>
+      <if test="currentRepay != null" >
+        #{currentRepay,jdbcType=INTEGER},
+      </if>
+      <if test="allRepaymentAmount != null" >
+        #{allRepaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="firstDate != null" >
+        #{firstDate,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="serialStartDate != null" >
+        #{serialStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueHistory != null" >
+        #{overdueHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="computeDate != null" >
+        #{computeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateType != null" >
+        #{updateType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atguigu.finance.bean.OverdueContractExample" resultType="java.lang.Integer" >
+    select count(*) from nplm_overdue_contract
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update nplm_overdue_contract
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanContractNum != null" >
+        LOAN_CONTRACT_NUM = #{record.loanContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overdueStatus != null" >
+        OVERDUE_STATUS = #{record.overdueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overdueDays != null" >
+        OVERDUE_DAYS = #{record.overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.instalmentCnt != null" >
+        INSTALMENT_CNT = #{record.instalmentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.allDays != null" >
+        ALL_DAYS = #{record.allDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.allInstalmentCnt != null" >
+        ALL_INSTALMENT_CNT = #{record.allInstalmentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.allNumber != null" >
+        ALL_NUMBER = #{record.allNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.principalInterest != null" >
+        PRINCIPAL_INTEREST = #{record.principalInterest,jdbcType=INTEGER},
+      </if>
+      <if test="record.allForfeit != null" >
+        ALL_FORFEIT = #{record.allForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="record.allAmerce != null" >
+        ALL_AMERCE = #{record.allAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="record.allShould != null" >
+        ALL_SHOULD = #{record.allShould,jdbcType=INTEGER},
+      </if>
+      <if test="record.allIndeed != null" >
+        ALL_INDEED = #{record.allIndeed,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentRepay != null" >
+        CURRENT_REPAY = #{record.currentRepay,jdbcType=INTEGER},
+      </if>
+      <if test="record.allRepaymentAmount != null" >
+        ALL_REPAYMENT_AMOUNT = #{record.allRepaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstDate != null" >
+        FIRST_DATE = #{record.firstDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null" >
+        START_DATE = #{record.startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serialStartDate != null" >
+        SERIAL_START_DATE = #{record.serialStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.overdueHistory != null" >
+        OVERDUE_HISTORY = #{record.overdueHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.computeDate != null" >
+        COMPUTE_DATE = #{record.computeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null" >
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateType != null" >
+        UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update nplm_overdue_contract
+    set id = #{record.id,jdbcType=VARCHAR},
+      LOAN_CONTRACT_NUM = #{record.loanContractNum,jdbcType=VARCHAR},
+      OVERDUE_STATUS = #{record.overdueStatus,jdbcType=VARCHAR},
+      OVERDUE_DAYS = #{record.overdueDays,jdbcType=INTEGER},
+      INSTALMENT_CNT = #{record.instalmentCnt,jdbcType=INTEGER},
+      ALL_DAYS = #{record.allDays,jdbcType=INTEGER},
+      ALL_INSTALMENT_CNT = #{record.allInstalmentCnt,jdbcType=INTEGER},
+      ALL_NUMBER = #{record.allNumber,jdbcType=INTEGER},
+      PRINCIPAL_INTEREST = #{record.principalInterest,jdbcType=INTEGER},
+      ALL_FORFEIT = #{record.allForfeit,jdbcType=INTEGER},
+      ALL_AMERCE = #{record.allAmerce,jdbcType=INTEGER},
+      ALL_SHOULD = #{record.allShould,jdbcType=INTEGER},
+      ALL_INDEED = #{record.allIndeed,jdbcType=INTEGER},
+      CURRENT_REPAY = #{record.currentRepay,jdbcType=INTEGER},
+      ALL_REPAYMENT_AMOUNT = #{record.allRepaymentAmount,jdbcType=INTEGER},
+      FIRST_DATE = #{record.firstDate,jdbcType=VARCHAR},
+      START_DATE = #{record.startDate,jdbcType=VARCHAR},
+      SERIAL_START_DATE = #{record.serialStartDate,jdbcType=VARCHAR},
+      OVERDUE_HISTORY = #{record.overdueHistory,jdbcType=VARCHAR},
+      COMPUTE_DATE = #{record.computeDate,jdbcType=VARCHAR},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.finance.bean.OverdueContract" >
+    update nplm_overdue_contract
+    <set >
+      <if test="loanContractNum != null" >
+        LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueStatus != null" >
+        OVERDUE_STATUS = #{overdueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueDays != null" >
+        OVERDUE_DAYS = #{overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="instalmentCnt != null" >
+        INSTALMENT_CNT = #{instalmentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="allDays != null" >
+        ALL_DAYS = #{allDays,jdbcType=INTEGER},
+      </if>
+      <if test="allInstalmentCnt != null" >
+        ALL_INSTALMENT_CNT = #{allInstalmentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="allNumber != null" >
+        ALL_NUMBER = #{allNumber,jdbcType=INTEGER},
+      </if>
+      <if test="principalInterest != null" >
+        PRINCIPAL_INTEREST = #{principalInterest,jdbcType=INTEGER},
+      </if>
+      <if test="allForfeit != null" >
+        ALL_FORFEIT = #{allForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="allAmerce != null" >
+        ALL_AMERCE = #{allAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="allShould != null" >
+        ALL_SHOULD = #{allShould,jdbcType=INTEGER},
+      </if>
+      <if test="allIndeed != null" >
+        ALL_INDEED = #{allIndeed,jdbcType=INTEGER},
+      </if>
+      <if test="currentRepay != null" >
+        CURRENT_REPAY = #{currentRepay,jdbcType=INTEGER},
+      </if>
+      <if test="allRepaymentAmount != null" >
+        ALL_REPAYMENT_AMOUNT = #{allRepaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="firstDate != null" >
+        FIRST_DATE = #{firstDate,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        START_DATE = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="serialStartDate != null" >
+        SERIAL_START_DATE = #{serialStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueHistory != null" >
+        OVERDUE_HISTORY = #{overdueHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="computeDate != null" >
+        COMPUTE_DATE = #{computeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE = #{updateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.finance.bean.OverdueContract" >
+    update nplm_overdue_contract
+    set LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=VARCHAR},
+      OVERDUE_STATUS = #{overdueStatus,jdbcType=VARCHAR},
+      OVERDUE_DAYS = #{overdueDays,jdbcType=INTEGER},
+      INSTALMENT_CNT = #{instalmentCnt,jdbcType=INTEGER},
+      ALL_DAYS = #{allDays,jdbcType=INTEGER},
+      ALL_INSTALMENT_CNT = #{allInstalmentCnt,jdbcType=INTEGER},
+      ALL_NUMBER = #{allNumber,jdbcType=INTEGER},
+      PRINCIPAL_INTEREST = #{principalInterest,jdbcType=INTEGER},
+      ALL_FORFEIT = #{allForfeit,jdbcType=INTEGER},
+      ALL_AMERCE = #{allAmerce,jdbcType=INTEGER},
+      ALL_SHOULD = #{allShould,jdbcType=INTEGER},
+      ALL_INDEED = #{allIndeed,jdbcType=INTEGER},
+      CURRENT_REPAY = #{currentRepay,jdbcType=INTEGER},
+      ALL_REPAYMENT_AMOUNT = #{allRepaymentAmount,jdbcType=INTEGER},
+      FIRST_DATE = #{firstDate,jdbcType=VARCHAR},
+      START_DATE = #{startDate,jdbcType=VARCHAR},
+      SERIAL_START_DATE = #{serialStartDate,jdbcType=VARCHAR},
+      OVERDUE_HISTORY = #{overdueHistory,jdbcType=VARCHAR},
+      COMPUTE_DATE = #{computeDate,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_TYPE = #{updateType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
