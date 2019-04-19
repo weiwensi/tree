@@ -9,9 +9,9 @@ public interface MongoDBService {
     //保存许可
     int savePermission(Permission permission);
     //根据id查询许可
-    Permission getPermissionByID(String id);
+    Permission getPermissionByID(Integer id);
     //更新许可
     void doUpdate(Permission permission);
     //删除许可
-    void deletePermission(String id);
+    int deletePermission(Integer id);
 }

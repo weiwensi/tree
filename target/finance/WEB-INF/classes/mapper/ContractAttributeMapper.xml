@@ -1,0 +1,1303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.finance.dao.ContractAttributeMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.finance.bean.ContractAttribute" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loan_contract_id" property="loanContractId" jdbcType="INTEGER" />
+    <result column="LOAN_CONTRACT_NUM" property="loanContractNum" jdbcType="INTEGER" />
+    <result column="business_type" property="businessType" jdbcType="VARCHAR" />
+    <result column="is_expedited" property="isExpedited" jdbcType="VARCHAR" />
+    <result column="sign_date" property="signDate" jdbcType="TIMESTAMP" />
+    <result column="sign_type" property="signType" jdbcType="INTEGER" />
+    <result column="approve_date" property="approveDate" jdbcType="VARCHAR" />
+    <result column="first_repay_date" property="firstRepayDate" jdbcType="VARCHAR" />
+    <result column="fee_flag" property="feeFlag" jdbcType="INTEGER" />
+    <result column="interest_flag" property="interestFlag" jdbcType="VARCHAR" />
+    <result column="interest_type" property="interestType" jdbcType="INTEGER" />
+    <result column="grace_days" property="graceDays" jdbcType="INTEGER" />
+    <result column="irr" property="irr" jdbcType="INTEGER" />
+    <result column="lns_rate" property="lnsRate" jdbcType="INTEGER" />
+    <result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+    <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+    <result column="loan_officer_id" property="loanOfficerId" jdbcType="VARCHAR" />
+    <result column="cityID" property="cityid" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="is_modify" property="isModify" jdbcType="VARCHAR" />
+    <result column="is_scheme_modify" property="isSchemeModify" jdbcType="VARCHAR" />
+    <result column="recycle_way" property="recycleWay" jdbcType="INTEGER" />
+    <result column="is_recycle_load" property="isRecycleLoad" jdbcType="VARCHAR" />
+    <result column="recycle_loan_cnt" property="recycleLoanCnt" jdbcType="INTEGER" />
+    <result column="old_contract_num" property="oldContractNum" jdbcType="VARCHAR" />
+    <result column="settle_amount" property="settleAmount" jdbcType="INTEGER" />
+    <result column="new_contract_num" property="newContractNum" jdbcType="VARCHAR" />
+    <result column="is_shorten" property="isShorten" jdbcType="VARCHAR" />
+    <result column="is_extend" property="isExtend" jdbcType="VARCHAR" />
+    <result column="is_change_produce" property="isChangeProduce" jdbcType="VARCHAR" />
+    <result column="is_overdue" property="isOverdue" jdbcType="VARCHAR" />
+    <result column="is_pay_ahead" property="isPayAhead" jdbcType="VARCHAR" />
+    <result column="is_pay_part" property="isPayPart" jdbcType="VARCHAR" />
+    <result column="purpose" property="purpose" jdbcType="VARCHAR" />
+    <result column="purpose_son" property="purposeSon" jdbcType="VARCHAR" />
+    <result column="purpose_detail" property="purposeDetail" jdbcType="VARCHAR" />
+    <result column="is_div_account" property="isDivAccount" jdbcType="VARCHAR" />
+    <result column="system_type" property="systemType" jdbcType="VARCHAR" />
+    <result column="high_risk" property="highRisk" jdbcType="VARCHAR" />
+    <result column="is_buyout" property="isBuyout" jdbcType="VARCHAR" />
+    <result column="fee_process_type" property="feeProcessType" jdbcType="VARCHAR" />
+    <result column="student_corp_name" property="studentCorpName" jdbcType="VARCHAR" />
+    <result column="settle_date" property="settleDate" jdbcType="VARCHAR" />
+    <result column="habit_time" property="habitTime" jdbcType="VARCHAR" />
+    <result column="RepayDay" property="repayday" jdbcType="VARCHAR" />
+    <result column="apply_Id" property="applyId" jdbcType="VARCHAR" />
+    <result column="old_Apply_Id" property="oldApplyId" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TYPE" property="updateType" jdbcType="VARCHAR" />
+    <result column="FRONT_CHARGE_DISCOUNT" property="frontChargeDiscount" jdbcType="INTEGER" />
+    <result column="MONTH_M_RATE" property="monthMRate" jdbcType="INTEGER" />
+    <result column="HANDLE_CHARGE_RATE" property="handleChargeRate" jdbcType="INTEGER" />
+    <result column="LOAN_TIMES" property="loanTimes" jdbcType="INTEGER" />
+    <result column="PAWN" property="pawn" jdbcType="VARCHAR" />
+    <result column="HANDLE_CHARGE" property="handleCharge" jdbcType="INTEGER" />
+    <result column="MONTH_CHARGE_DISCOUNT" property="monthChargeDiscount" jdbcType="INTEGER" />
+    <result column="GUARANTEE_FEE" property="guaranteeFee" jdbcType="INTEGER" />
+    <result column="GUARANTEE_COMPANY" property="guaranteeCompany" jdbcType="VARCHAR" />
+    <result column="def1" property="def1" jdbcType="VARCHAR" />
+    <result column="def2" property="def2" jdbcType="VARCHAR" />
+    <result column="def3" property="def3" jdbcType="VARCHAR" />
+    <result column="def4" property="def4" jdbcType="VARCHAR" />
+    <result column="def5" property="def5" jdbcType="VARCHAR" />
+    <result column="def6" property="def6" jdbcType="VARCHAR" />
+    <result column="def7" property="def7" jdbcType="VARCHAR" />
+    <result column="def8" property="def8" jdbcType="VARCHAR" />
+    <result column="def9" property="def9" jdbcType="VARCHAR" />
+    <result column="def10" property="def10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, loan_contract_id, LOAN_CONTRACT_NUM, business_type, is_expedited, sign_date, 
+    sign_type, approve_date, first_repay_date, fee_flag, interest_flag, interest_type, 
+    grace_days, irr, lns_rate, channel_code, channel_name, loan_officer_id, cityID, city, 
+    is_modify, is_scheme_modify, recycle_way, is_recycle_load, recycle_loan_cnt, old_contract_num, 
+    settle_amount, new_contract_num, is_shorten, is_extend, is_change_produce, is_overdue, 
+    is_pay_ahead, is_pay_part, purpose, purpose_son, purpose_detail, is_div_account, 
+    system_type, high_risk, is_buyout, fee_process_type, student_corp_name, settle_date, 
+    habit_time, RepayDay, apply_Id, old_Apply_Id, dept_id, dept_name, CREATOR, CREATE_TIME, 
+    UPDATER, UPDATE_TIME, UPDATE_TYPE, FRONT_CHARGE_DISCOUNT, MONTH_M_RATE, HANDLE_CHARGE_RATE, 
+    LOAN_TIMES, PAWN, HANDLE_CHARGE, MONTH_CHARGE_DISCOUNT, GUARANTEE_FEE, GUARANTEE_COMPANY, 
+    def1, def2, def3, def4, def5, def6, def7, def8, def9, def10
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.atguigu.finance.bean.ContractAttributeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from nplm_contract_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nplm_contract_attribute
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nplm_contract_attribute
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atguigu.finance.bean.ContractAttributeExample" >
+    delete from nplm_contract_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.finance.bean.ContractAttribute" >
+    insert into nplm_contract_attribute (id, loan_contract_id, LOAN_CONTRACT_NUM, 
+      business_type, is_expedited, sign_date, 
+      sign_type, approve_date, first_repay_date, 
+      fee_flag, interest_flag, interest_type, 
+      grace_days, irr, lns_rate, 
+      channel_code, channel_name, loan_officer_id, 
+      cityID, city, is_modify, 
+      is_scheme_modify, recycle_way, is_recycle_load, 
+      recycle_loan_cnt, old_contract_num, settle_amount, 
+      new_contract_num, is_shorten, is_extend, 
+      is_change_produce, is_overdue, is_pay_ahead, 
+      is_pay_part, purpose, purpose_son, 
+      purpose_detail, is_div_account, system_type, 
+      high_risk, is_buyout, fee_process_type, 
+      student_corp_name, settle_date, habit_time, 
+      RepayDay, apply_Id, old_Apply_Id, 
+      dept_id, dept_name, CREATOR, 
+      CREATE_TIME, UPDATER, UPDATE_TIME, 
+      UPDATE_TYPE, FRONT_CHARGE_DISCOUNT, MONTH_M_RATE, 
+      HANDLE_CHARGE_RATE, LOAN_TIMES, PAWN, 
+      HANDLE_CHARGE, MONTH_CHARGE_DISCOUNT, GUARANTEE_FEE, 
+      GUARANTEE_COMPANY, def1, def2, 
+      def3, def4, def5, def6, 
+      def7, def8, def9, def10
+      )
+    values (#{id,jdbcType=INTEGER}, #{loanContractId,jdbcType=INTEGER}, #{loanContractNum,jdbcType=INTEGER}, 
+      #{businessType,jdbcType=VARCHAR}, #{isExpedited,jdbcType=VARCHAR}, #{signDate,jdbcType=TIMESTAMP}, 
+      #{signType,jdbcType=INTEGER}, #{approveDate,jdbcType=VARCHAR}, #{firstRepayDate,jdbcType=VARCHAR}, 
+      #{feeFlag,jdbcType=INTEGER}, #{interestFlag,jdbcType=VARCHAR}, #{interestType,jdbcType=INTEGER}, 
+      #{graceDays,jdbcType=INTEGER}, #{irr,jdbcType=INTEGER}, #{lnsRate,jdbcType=INTEGER}, 
+      #{channelCode,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, #{loanOfficerId,jdbcType=VARCHAR}, 
+      #{cityid,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{isModify,jdbcType=VARCHAR}, 
+      #{isSchemeModify,jdbcType=VARCHAR}, #{recycleWay,jdbcType=INTEGER}, #{isRecycleLoad,jdbcType=VARCHAR}, 
+      #{recycleLoanCnt,jdbcType=INTEGER}, #{oldContractNum,jdbcType=VARCHAR}, #{settleAmount,jdbcType=INTEGER}, 
+      #{newContractNum,jdbcType=VARCHAR}, #{isShorten,jdbcType=VARCHAR}, #{isExtend,jdbcType=VARCHAR}, 
+      #{isChangeProduce,jdbcType=VARCHAR}, #{isOverdue,jdbcType=VARCHAR}, #{isPayAhead,jdbcType=VARCHAR}, 
+      #{isPayPart,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR}, #{purposeSon,jdbcType=VARCHAR}, 
+      #{purposeDetail,jdbcType=VARCHAR}, #{isDivAccount,jdbcType=VARCHAR}, #{systemType,jdbcType=VARCHAR}, 
+      #{highRisk,jdbcType=VARCHAR}, #{isBuyout,jdbcType=VARCHAR}, #{feeProcessType,jdbcType=VARCHAR}, 
+      #{studentCorpName,jdbcType=VARCHAR}, #{settleDate,jdbcType=VARCHAR}, #{habitTime,jdbcType=VARCHAR}, 
+      #{repayday,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{oldApplyId,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateType,jdbcType=VARCHAR}, #{frontChargeDiscount,jdbcType=INTEGER}, #{monthMRate,jdbcType=INTEGER}, 
+      #{handleChargeRate,jdbcType=INTEGER}, #{loanTimes,jdbcType=INTEGER}, #{pawn,jdbcType=VARCHAR}, 
+      #{handleCharge,jdbcType=INTEGER}, #{monthChargeDiscount,jdbcType=INTEGER}, #{guaranteeFee,jdbcType=INTEGER}, 
+      #{guaranteeCompany,jdbcType=VARCHAR}, #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, 
+      #{def3,jdbcType=VARCHAR}, #{def4,jdbcType=VARCHAR}, #{def5,jdbcType=VARCHAR}, #{def6,jdbcType=VARCHAR}, 
+      #{def7,jdbcType=VARCHAR}, #{def8,jdbcType=VARCHAR}, #{def9,jdbcType=VARCHAR}, #{def10,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.finance.bean.ContractAttribute" >
+    insert into nplm_contract_attribute
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loanContractId != null" >
+        loan_contract_id,
+      </if>
+      <if test="loanContractNum != null" >
+        LOAN_CONTRACT_NUM,
+      </if>
+      <if test="businessType != null" >
+        business_type,
+      </if>
+      <if test="isExpedited != null" >
+        is_expedited,
+      </if>
+      <if test="signDate != null" >
+        sign_date,
+      </if>
+      <if test="signType != null" >
+        sign_type,
+      </if>
+      <if test="approveDate != null" >
+        approve_date,
+      </if>
+      <if test="firstRepayDate != null" >
+        first_repay_date,
+      </if>
+      <if test="feeFlag != null" >
+        fee_flag,
+      </if>
+      <if test="interestFlag != null" >
+        interest_flag,
+      </if>
+      <if test="interestType != null" >
+        interest_type,
+      </if>
+      <if test="graceDays != null" >
+        grace_days,
+      </if>
+      <if test="irr != null" >
+        irr,
+      </if>
+      <if test="lnsRate != null" >
+        lns_rate,
+      </if>
+      <if test="channelCode != null" >
+        channel_code,
+      </if>
+      <if test="channelName != null" >
+        channel_name,
+      </if>
+      <if test="loanOfficerId != null" >
+        loan_officer_id,
+      </if>
+      <if test="cityid != null" >
+        cityID,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="isModify != null" >
+        is_modify,
+      </if>
+      <if test="isSchemeModify != null" >
+        is_scheme_modify,
+      </if>
+      <if test="recycleWay != null" >
+        recycle_way,
+      </if>
+      <if test="isRecycleLoad != null" >
+        is_recycle_load,
+      </if>
+      <if test="recycleLoanCnt != null" >
+        recycle_loan_cnt,
+      </if>
+      <if test="oldContractNum != null" >
+        old_contract_num,
+      </if>
+      <if test="settleAmount != null" >
+        settle_amount,
+      </if>
+      <if test="newContractNum != null" >
+        new_contract_num,
+      </if>
+      <if test="isShorten != null" >
+        is_shorten,
+      </if>
+      <if test="isExtend != null" >
+        is_extend,
+      </if>
+      <if test="isChangeProduce != null" >
+        is_change_produce,
+      </if>
+      <if test="isOverdue != null" >
+        is_overdue,
+      </if>
+      <if test="isPayAhead != null" >
+        is_pay_ahead,
+      </if>
+      <if test="isPayPart != null" >
+        is_pay_part,
+      </if>
+      <if test="purpose != null" >
+        purpose,
+      </if>
+      <if test="purposeSon != null" >
+        purpose_son,
+      </if>
+      <if test="purposeDetail != null" >
+        purpose_detail,
+      </if>
+      <if test="isDivAccount != null" >
+        is_div_account,
+      </if>
+      <if test="systemType != null" >
+        system_type,
+      </if>
+      <if test="highRisk != null" >
+        high_risk,
+      </if>
+      <if test="isBuyout != null" >
+        is_buyout,
+      </if>
+      <if test="feeProcessType != null" >
+        fee_process_type,
+      </if>
+      <if test="studentCorpName != null" >
+        student_corp_name,
+      </if>
+      <if test="settleDate != null" >
+        settle_date,
+      </if>
+      <if test="habitTime != null" >
+        habit_time,
+      </if>
+      <if test="repayday != null" >
+        RepayDay,
+      </if>
+      <if test="applyId != null" >
+        apply_Id,
+      </if>
+      <if test="oldApplyId != null" >
+        old_Apply_Id,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE,
+      </if>
+      <if test="frontChargeDiscount != null" >
+        FRONT_CHARGE_DISCOUNT,
+      </if>
+      <if test="monthMRate != null" >
+        MONTH_M_RATE,
+      </if>
+      <if test="handleChargeRate != null" >
+        HANDLE_CHARGE_RATE,
+      </if>
+      <if test="loanTimes != null" >
+        LOAN_TIMES,
+      </if>
+      <if test="pawn != null" >
+        PAWN,
+      </if>
+      <if test="handleCharge != null" >
+        HANDLE_CHARGE,
+      </if>
+      <if test="monthChargeDiscount != null" >
+        MONTH_CHARGE_DISCOUNT,
+      </if>
+      <if test="guaranteeFee != null" >
+        GUARANTEE_FEE,
+      </if>
+      <if test="guaranteeCompany != null" >
+        GUARANTEE_COMPANY,
+      </if>
+      <if test="def1 != null" >
+        def1,
+      </if>
+      <if test="def2 != null" >
+        def2,
+      </if>
+      <if test="def3 != null" >
+        def3,
+      </if>
+      <if test="def4 != null" >
+        def4,
+      </if>
+      <if test="def5 != null" >
+        def5,
+      </if>
+      <if test="def6 != null" >
+        def6,
+      </if>
+      <if test="def7 != null" >
+        def7,
+      </if>
+      <if test="def8 != null" >
+        def8,
+      </if>
+      <if test="def9 != null" >
+        def9,
+      </if>
+      <if test="def10 != null" >
+        def10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loanContractId != null" >
+        #{loanContractId,jdbcType=INTEGER},
+      </if>
+      <if test="loanContractNum != null" >
+        #{loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="isExpedited != null" >
+        #{isExpedited,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null" >
+        #{signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signType != null" >
+        #{signType,jdbcType=INTEGER},
+      </if>
+      <if test="approveDate != null" >
+        #{approveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRepayDate != null" >
+        #{firstRepayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="feeFlag != null" >
+        #{feeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="interestFlag != null" >
+        #{interestFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="interestType != null" >
+        #{interestType,jdbcType=INTEGER},
+      </if>
+      <if test="graceDays != null" >
+        #{graceDays,jdbcType=INTEGER},
+      </if>
+      <if test="irr != null" >
+        #{irr,jdbcType=INTEGER},
+      </if>
+      <if test="lnsRate != null" >
+        #{lnsRate,jdbcType=INTEGER},
+      </if>
+      <if test="channelCode != null" >
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="loanOfficerId != null" >
+        #{loanOfficerId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null" >
+        #{isModify,jdbcType=VARCHAR},
+      </if>
+      <if test="isSchemeModify != null" >
+        #{isSchemeModify,jdbcType=VARCHAR},
+      </if>
+      <if test="recycleWay != null" >
+        #{recycleWay,jdbcType=INTEGER},
+      </if>
+      <if test="isRecycleLoad != null" >
+        #{isRecycleLoad,jdbcType=VARCHAR},
+      </if>
+      <if test="recycleLoanCnt != null" >
+        #{recycleLoanCnt,jdbcType=INTEGER},
+      </if>
+      <if test="oldContractNum != null" >
+        #{oldContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="settleAmount != null" >
+        #{settleAmount,jdbcType=INTEGER},
+      </if>
+      <if test="newContractNum != null" >
+        #{newContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isShorten != null" >
+        #{isShorten,jdbcType=VARCHAR},
+      </if>
+      <if test="isExtend != null" >
+        #{isExtend,jdbcType=VARCHAR},
+      </if>
+      <if test="isChangeProduce != null" >
+        #{isChangeProduce,jdbcType=VARCHAR},
+      </if>
+      <if test="isOverdue != null" >
+        #{isOverdue,jdbcType=VARCHAR},
+      </if>
+      <if test="isPayAhead != null" >
+        #{isPayAhead,jdbcType=VARCHAR},
+      </if>
+      <if test="isPayPart != null" >
+        #{isPayPart,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null" >
+        #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeSon != null" >
+        #{purposeSon,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeDetail != null" >
+        #{purposeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="isDivAccount != null" >
+        #{isDivAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="systemType != null" >
+        #{systemType,jdbcType=VARCHAR},
+      </if>
+      <if test="highRisk != null" >
+        #{highRisk,jdbcType=VARCHAR},
+      </if>
+      <if test="isBuyout != null" >
+        #{isBuyout,jdbcType=VARCHAR},
+      </if>
+      <if test="feeProcessType != null" >
+        #{feeProcessType,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCorpName != null" >
+        #{studentCorpName,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null" >
+        #{settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="habitTime != null" >
+        #{habitTime,jdbcType=VARCHAR},
+      </if>
+      <if test="repayday != null" >
+        #{repayday,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="oldApplyId != null" >
+        #{oldApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateType != null" >
+        #{updateType,jdbcType=VARCHAR},
+      </if>
+      <if test="frontChargeDiscount != null" >
+        #{frontChargeDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="monthMRate != null" >
+        #{monthMRate,jdbcType=INTEGER},
+      </if>
+      <if test="handleChargeRate != null" >
+        #{handleChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="loanTimes != null" >
+        #{loanTimes,jdbcType=INTEGER},
+      </if>
+      <if test="pawn != null" >
+        #{pawn,jdbcType=VARCHAR},
+      </if>
+      <if test="handleCharge != null" >
+        #{handleCharge,jdbcType=INTEGER},
+      </if>
+      <if test="monthChargeDiscount != null" >
+        #{monthChargeDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="guaranteeFee != null" >
+        #{guaranteeFee,jdbcType=INTEGER},
+      </if>
+      <if test="guaranteeCompany != null" >
+        #{guaranteeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="def1 != null" >
+        #{def1,jdbcType=VARCHAR},
+      </if>
+      <if test="def2 != null" >
+        #{def2,jdbcType=VARCHAR},
+      </if>
+      <if test="def3 != null" >
+        #{def3,jdbcType=VARCHAR},
+      </if>
+      <if test="def4 != null" >
+        #{def4,jdbcType=VARCHAR},
+      </if>
+      <if test="def5 != null" >
+        #{def5,jdbcType=VARCHAR},
+      </if>
+      <if test="def6 != null" >
+        #{def6,jdbcType=VARCHAR},
+      </if>
+      <if test="def7 != null" >
+        #{def7,jdbcType=VARCHAR},
+      </if>
+      <if test="def8 != null" >
+        #{def8,jdbcType=VARCHAR},
+      </if>
+      <if test="def9 != null" >
+        #{def9,jdbcType=VARCHAR},
+      </if>
+      <if test="def10 != null" >
+        #{def10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atguigu.finance.bean.ContractAttributeExample" resultType="java.lang.Integer" >
+    select count(*) from nplm_contract_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update nplm_contract_attribute
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.loanContractId != null" >
+        loan_contract_id = #{record.loanContractId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loanContractNum != null" >
+        LOAN_CONTRACT_NUM = #{record.loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessType != null" >
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isExpedited != null" >
+        is_expedited = #{record.isExpedited,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signDate != null" >
+        sign_date = #{record.signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signType != null" >
+        sign_type = #{record.signType,jdbcType=INTEGER},
+      </if>
+      <if test="record.approveDate != null" >
+        approve_date = #{record.approveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstRepayDate != null" >
+        first_repay_date = #{record.firstRepayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feeFlag != null" >
+        fee_flag = #{record.feeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.interestFlag != null" >
+        interest_flag = #{record.interestFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interestType != null" >
+        interest_type = #{record.interestType,jdbcType=INTEGER},
+      </if>
+      <if test="record.graceDays != null" >
+        grace_days = #{record.graceDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.irr != null" >
+        irr = #{record.irr,jdbcType=INTEGER},
+      </if>
+      <if test="record.lnsRate != null" >
+        lns_rate = #{record.lnsRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelCode != null" >
+        channel_code = #{record.channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelName != null" >
+        channel_name = #{record.channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanOfficerId != null" >
+        loan_officer_id = #{record.loanOfficerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityid != null" >
+        cityID = #{record.cityid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isModify != null" >
+        is_modify = #{record.isModify,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSchemeModify != null" >
+        is_scheme_modify = #{record.isSchemeModify,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recycleWay != null" >
+        recycle_way = #{record.recycleWay,jdbcType=INTEGER},
+      </if>
+      <if test="record.isRecycleLoad != null" >
+        is_recycle_load = #{record.isRecycleLoad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recycleLoanCnt != null" >
+        recycle_loan_cnt = #{record.recycleLoanCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.oldContractNum != null" >
+        old_contract_num = #{record.oldContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleAmount != null" >
+        settle_amount = #{record.settleAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.newContractNum != null" >
+        new_contract_num = #{record.newContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShorten != null" >
+        is_shorten = #{record.isShorten,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isExtend != null" >
+        is_extend = #{record.isExtend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isChangeProduce != null" >
+        is_change_produce = #{record.isChangeProduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isOverdue != null" >
+        is_overdue = #{record.isOverdue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isPayAhead != null" >
+        is_pay_ahead = #{record.isPayAhead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isPayPart != null" >
+        is_pay_part = #{record.isPayPart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purpose != null" >
+        purpose = #{record.purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purposeSon != null" >
+        purpose_son = #{record.purposeSon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purposeDetail != null" >
+        purpose_detail = #{record.purposeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDivAccount != null" >
+        is_div_account = #{record.isDivAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.systemType != null" >
+        system_type = #{record.systemType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.highRisk != null" >
+        high_risk = #{record.highRisk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBuyout != null" >
+        is_buyout = #{record.isBuyout,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feeProcessType != null" >
+        fee_process_type = #{record.feeProcessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentCorpName != null" >
+        student_corp_name = #{record.studentCorpName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleDate != null" >
+        settle_date = #{record.settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.habitTime != null" >
+        habit_time = #{record.habitTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repayday != null" >
+        RepayDay = #{record.repayday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyId != null" >
+        apply_Id = #{record.applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldApplyId != null" >
+        old_Apply_Id = #{record.oldApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null" >
+        dept_id = #{record.deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptName != null" >
+        dept_name = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null" >
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateType != null" >
+        UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frontChargeDiscount != null" >
+        FRONT_CHARGE_DISCOUNT = #{record.frontChargeDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="record.monthMRate != null" >
+        MONTH_M_RATE = #{record.monthMRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.handleChargeRate != null" >
+        HANDLE_CHARGE_RATE = #{record.handleChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.loanTimes != null" >
+        LOAN_TIMES = #{record.loanTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.pawn != null" >
+        PAWN = #{record.pawn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleCharge != null" >
+        HANDLE_CHARGE = #{record.handleCharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.monthChargeDiscount != null" >
+        MONTH_CHARGE_DISCOUNT = #{record.monthChargeDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="record.guaranteeFee != null" >
+        GUARANTEE_FEE = #{record.guaranteeFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.guaranteeCompany != null" >
+        GUARANTEE_COMPANY = #{record.guaranteeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def1 != null" >
+        def1 = #{record.def1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def2 != null" >
+        def2 = #{record.def2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def3 != null" >
+        def3 = #{record.def3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def4 != null" >
+        def4 = #{record.def4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def5 != null" >
+        def5 = #{record.def5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def6 != null" >
+        def6 = #{record.def6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def7 != null" >
+        def7 = #{record.def7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def8 != null" >
+        def8 = #{record.def8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def9 != null" >
+        def9 = #{record.def9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.def10 != null" >
+        def10 = #{record.def10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update nplm_contract_attribute
+    set id = #{record.id,jdbcType=INTEGER},
+      loan_contract_id = #{record.loanContractId,jdbcType=INTEGER},
+      LOAN_CONTRACT_NUM = #{record.loanContractNum,jdbcType=INTEGER},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      is_expedited = #{record.isExpedited,jdbcType=VARCHAR},
+      sign_date = #{record.signDate,jdbcType=TIMESTAMP},
+      sign_type = #{record.signType,jdbcType=INTEGER},
+      approve_date = #{record.approveDate,jdbcType=VARCHAR},
+      first_repay_date = #{record.firstRepayDate,jdbcType=VARCHAR},
+      fee_flag = #{record.feeFlag,jdbcType=INTEGER},
+      interest_flag = #{record.interestFlag,jdbcType=VARCHAR},
+      interest_type = #{record.interestType,jdbcType=INTEGER},
+      grace_days = #{record.graceDays,jdbcType=INTEGER},
+      irr = #{record.irr,jdbcType=INTEGER},
+      lns_rate = #{record.lnsRate,jdbcType=INTEGER},
+      channel_code = #{record.channelCode,jdbcType=VARCHAR},
+      channel_name = #{record.channelName,jdbcType=VARCHAR},
+      loan_officer_id = #{record.loanOfficerId,jdbcType=VARCHAR},
+      cityID = #{record.cityid,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      is_modify = #{record.isModify,jdbcType=VARCHAR},
+      is_scheme_modify = #{record.isSchemeModify,jdbcType=VARCHAR},
+      recycle_way = #{record.recycleWay,jdbcType=INTEGER},
+      is_recycle_load = #{record.isRecycleLoad,jdbcType=VARCHAR},
+      recycle_loan_cnt = #{record.recycleLoanCnt,jdbcType=INTEGER},
+      old_contract_num = #{record.oldContractNum,jdbcType=VARCHAR},
+      settle_amount = #{record.settleAmount,jdbcType=INTEGER},
+      new_contract_num = #{record.newContractNum,jdbcType=VARCHAR},
+      is_shorten = #{record.isShorten,jdbcType=VARCHAR},
+      is_extend = #{record.isExtend,jdbcType=VARCHAR},
+      is_change_produce = #{record.isChangeProduce,jdbcType=VARCHAR},
+      is_overdue = #{record.isOverdue,jdbcType=VARCHAR},
+      is_pay_ahead = #{record.isPayAhead,jdbcType=VARCHAR},
+      is_pay_part = #{record.isPayPart,jdbcType=VARCHAR},
+      purpose = #{record.purpose,jdbcType=VARCHAR},
+      purpose_son = #{record.purposeSon,jdbcType=VARCHAR},
+      purpose_detail = #{record.purposeDetail,jdbcType=VARCHAR},
+      is_div_account = #{record.isDivAccount,jdbcType=VARCHAR},
+      system_type = #{record.systemType,jdbcType=VARCHAR},
+      high_risk = #{record.highRisk,jdbcType=VARCHAR},
+      is_buyout = #{record.isBuyout,jdbcType=VARCHAR},
+      fee_process_type = #{record.feeProcessType,jdbcType=VARCHAR},
+      student_corp_name = #{record.studentCorpName,jdbcType=VARCHAR},
+      settle_date = #{record.settleDate,jdbcType=VARCHAR},
+      habit_time = #{record.habitTime,jdbcType=VARCHAR},
+      RepayDay = #{record.repayday,jdbcType=VARCHAR},
+      apply_Id = #{record.applyId,jdbcType=VARCHAR},
+      old_Apply_Id = #{record.oldApplyId,jdbcType=VARCHAR},
+      dept_id = #{record.deptId,jdbcType=VARCHAR},
+      dept_name = #{record.deptName,jdbcType=VARCHAR},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR},
+      FRONT_CHARGE_DISCOUNT = #{record.frontChargeDiscount,jdbcType=INTEGER},
+      MONTH_M_RATE = #{record.monthMRate,jdbcType=INTEGER},
+      HANDLE_CHARGE_RATE = #{record.handleChargeRate,jdbcType=INTEGER},
+      LOAN_TIMES = #{record.loanTimes,jdbcType=INTEGER},
+      PAWN = #{record.pawn,jdbcType=VARCHAR},
+      HANDLE_CHARGE = #{record.handleCharge,jdbcType=INTEGER},
+      MONTH_CHARGE_DISCOUNT = #{record.monthChargeDiscount,jdbcType=INTEGER},
+      GUARANTEE_FEE = #{record.guaranteeFee,jdbcType=INTEGER},
+      GUARANTEE_COMPANY = #{record.guaranteeCompany,jdbcType=VARCHAR},
+      def1 = #{record.def1,jdbcType=VARCHAR},
+      def2 = #{record.def2,jdbcType=VARCHAR},
+      def3 = #{record.def3,jdbcType=VARCHAR},
+      def4 = #{record.def4,jdbcType=VARCHAR},
+      def5 = #{record.def5,jdbcType=VARCHAR},
+      def6 = #{record.def6,jdbcType=VARCHAR},
+      def7 = #{record.def7,jdbcType=VARCHAR},
+      def8 = #{record.def8,jdbcType=VARCHAR},
+      def9 = #{record.def9,jdbcType=VARCHAR},
+      def10 = #{record.def10,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.finance.bean.ContractAttribute" >
+    update nplm_contract_attribute
+    <set >
+      <if test="loanContractId != null" >
+        loan_contract_id = #{loanContractId,jdbcType=INTEGER},
+      </if>
+      <if test="loanContractNum != null" >
+        LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="businessType != null" >
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="isExpedited != null" >
+        is_expedited = #{isExpedited,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null" >
+        sign_date = #{signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signType != null" >
+        sign_type = #{signType,jdbcType=INTEGER},
+      </if>
+      <if test="approveDate != null" >
+        approve_date = #{approveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRepayDate != null" >
+        first_repay_date = #{firstRepayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="feeFlag != null" >
+        fee_flag = #{feeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="interestFlag != null" >
+        interest_flag = #{interestFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="interestType != null" >
+        interest_type = #{interestType,jdbcType=INTEGER},
+      </if>
+      <if test="graceDays != null" >
+        grace_days = #{graceDays,jdbcType=INTEGER},
+      </if>
+      <if test="irr != null" >
+        irr = #{irr,jdbcType=INTEGER},
+      </if>
+      <if test="lnsRate != null" >
+        lns_rate = #{lnsRate,jdbcType=INTEGER},
+      </if>
+      <if test="channelCode != null" >
+        channel_code = #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="loanOfficerId != null" >
+        loan_officer_id = #{loanOfficerId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        cityID = #{cityid,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null" >
+        is_modify = #{isModify,jdbcType=VARCHAR},
+      </if>
+      <if test="isSchemeModify != null" >
+        is_scheme_modify = #{isSchemeModify,jdbcType=VARCHAR},
+      </if>
+      <if test="recycleWay != null" >
+        recycle_way = #{recycleWay,jdbcType=INTEGER},
+      </if>
+      <if test="isRecycleLoad != null" >
+        is_recycle_load = #{isRecycleLoad,jdbcType=VARCHAR},
+      </if>
+      <if test="recycleLoanCnt != null" >
+        recycle_loan_cnt = #{recycleLoanCnt,jdbcType=INTEGER},
+      </if>
+      <if test="oldContractNum != null" >
+        old_contract_num = #{oldContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="settleAmount != null" >
+        settle_amount = #{settleAmount,jdbcType=INTEGER},
+      </if>
+      <if test="newContractNum != null" >
+        new_contract_num = #{newContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isShorten != null" >
+        is_shorten = #{isShorten,jdbcType=VARCHAR},
+      </if>
+      <if test="isExtend != null" >
+        is_extend = #{isExtend,jdbcType=VARCHAR},
+      </if>
+      <if test="isChangeProduce != null" >
+        is_change_produce = #{isChangeProduce,jdbcType=VARCHAR},
+      </if>
+      <if test="isOverdue != null" >
+        is_overdue = #{isOverdue,jdbcType=VARCHAR},
+      </if>
+      <if test="isPayAhead != null" >
+        is_pay_ahead = #{isPayAhead,jdbcType=VARCHAR},
+      </if>
+      <if test="isPayPart != null" >
+        is_pay_part = #{isPayPart,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null" >
+        purpose = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeSon != null" >
+        purpose_son = #{purposeSon,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeDetail != null" >
+        purpose_detail = #{purposeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="isDivAccount != null" >
+        is_div_account = #{isDivAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="systemType != null" >
+        system_type = #{systemType,jdbcType=VARCHAR},
+      </if>
+      <if test="highRisk != null" >
+        high_risk = #{highRisk,jdbcType=VARCHAR},
+      </if>
+      <if test="isBuyout != null" >
+        is_buyout = #{isBuyout,jdbcType=VARCHAR},
+      </if>
+      <if test="feeProcessType != null" >
+        fee_process_type = #{feeProcessType,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCorpName != null" >
+        student_corp_name = #{studentCorpName,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null" >
+        settle_date = #{settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="habitTime != null" >
+        habit_time = #{habitTime,jdbcType=VARCHAR},
+      </if>
+      <if test="repayday != null" >
+        RepayDay = #{repayday,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null" >
+        apply_Id = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="oldApplyId != null" >
+        old_Apply_Id = #{oldApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE = #{updateType,jdbcType=VARCHAR},
+      </if>
+      <if test="frontChargeDiscount != null" >
+        FRONT_CHARGE_DISCOUNT = #{frontChargeDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="monthMRate != null" >
+        MONTH_M_RATE = #{monthMRate,jdbcType=INTEGER},
+      </if>
+      <if test="handleChargeRate != null" >
+        HANDLE_CHARGE_RATE = #{handleChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="loanTimes != null" >
+        LOAN_TIMES = #{loanTimes,jdbcType=INTEGER},
+      </if>
+      <if test="pawn != null" >
+        PAWN = #{pawn,jdbcType=VARCHAR},
+      </if>
+      <if test="handleCharge != null" >
+        HANDLE_CHARGE = #{handleCharge,jdbcType=INTEGER},
+      </if>
+      <if test="monthChargeDiscount != null" >
+        MONTH_CHARGE_DISCOUNT = #{monthChargeDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="guaranteeFee != null" >
+        GUARANTEE_FEE = #{guaranteeFee,jdbcType=INTEGER},
+      </if>
+      <if test="guaranteeCompany != null" >
+        GUARANTEE_COMPANY = #{guaranteeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="def1 != null" >
+        def1 = #{def1,jdbcType=VARCHAR},
+      </if>
+      <if test="def2 != null" >
+        def2 = #{def2,jdbcType=VARCHAR},
+      </if>
+      <if test="def3 != null" >
+        def3 = #{def3,jdbcType=VARCHAR},
+      </if>
+      <if test="def4 != null" >
+        def4 = #{def4,jdbcType=VARCHAR},
+      </if>
+      <if test="def5 != null" >
+        def5 = #{def5,jdbcType=VARCHAR},
+      </if>
+      <if test="def6 != null" >
+        def6 = #{def6,jdbcType=VARCHAR},
+      </if>
+      <if test="def7 != null" >
+        def7 = #{def7,jdbcType=VARCHAR},
+      </if>
+      <if test="def8 != null" >
+        def8 = #{def8,jdbcType=VARCHAR},
+      </if>
+      <if test="def9 != null" >
+        def9 = #{def9,jdbcType=VARCHAR},
+      </if>
+      <if test="def10 != null" >
+        def10 = #{def10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.finance.bean.ContractAttribute" >
+    update nplm_contract_attribute
+    set loan_contract_id = #{loanContractId,jdbcType=INTEGER},
+      LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=INTEGER},
+      business_type = #{businessType,jdbcType=VARCHAR},
+      is_expedited = #{isExpedited,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=TIMESTAMP},
+      sign_type = #{signType,jdbcType=INTEGER},
+      approve_date = #{approveDate,jdbcType=VARCHAR},
+      first_repay_date = #{firstRepayDate,jdbcType=VARCHAR},
+      fee_flag = #{feeFlag,jdbcType=INTEGER},
+      interest_flag = #{interestFlag,jdbcType=VARCHAR},
+      interest_type = #{interestType,jdbcType=INTEGER},
+      grace_days = #{graceDays,jdbcType=INTEGER},
+      irr = #{irr,jdbcType=INTEGER},
+      lns_rate = #{lnsRate,jdbcType=INTEGER},
+      channel_code = #{channelCode,jdbcType=VARCHAR},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      loan_officer_id = #{loanOfficerId,jdbcType=VARCHAR},
+      cityID = #{cityid,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      is_modify = #{isModify,jdbcType=VARCHAR},
+      is_scheme_modify = #{isSchemeModify,jdbcType=VARCHAR},
+      recycle_way = #{recycleWay,jdbcType=INTEGER},
+      is_recycle_load = #{isRecycleLoad,jdbcType=VARCHAR},
+      recycle_loan_cnt = #{recycleLoanCnt,jdbcType=INTEGER},
+      old_contract_num = #{oldContractNum,jdbcType=VARCHAR},
+      settle_amount = #{settleAmount,jdbcType=INTEGER},
+      new_contract_num = #{newContractNum,jdbcType=VARCHAR},
+      is_shorten = #{isShorten,jdbcType=VARCHAR},
+      is_extend = #{isExtend,jdbcType=VARCHAR},
+      is_change_produce = #{isChangeProduce,jdbcType=VARCHAR},
+      is_overdue = #{isOverdue,jdbcType=VARCHAR},
+      is_pay_ahead = #{isPayAhead,jdbcType=VARCHAR},
+      is_pay_part = #{isPayPart,jdbcType=VARCHAR},
+      purpose = #{purpose,jdbcType=VARCHAR},
+      purpose_son = #{purposeSon,jdbcType=VARCHAR},
+      purpose_detail = #{purposeDetail,jdbcType=VARCHAR},
+      is_div_account = #{isDivAccount,jdbcType=VARCHAR},
+      system_type = #{systemType,jdbcType=VARCHAR},
+      high_risk = #{highRisk,jdbcType=VARCHAR},
+      is_buyout = #{isBuyout,jdbcType=VARCHAR},
+      fee_process_type = #{feeProcessType,jdbcType=VARCHAR},
+      student_corp_name = #{studentCorpName,jdbcType=VARCHAR},
+      settle_date = #{settleDate,jdbcType=VARCHAR},
+      habit_time = #{habitTime,jdbcType=VARCHAR},
+      RepayDay = #{repayday,jdbcType=VARCHAR},
+      apply_Id = #{applyId,jdbcType=VARCHAR},
+      old_Apply_Id = #{oldApplyId,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_TYPE = #{updateType,jdbcType=VARCHAR},
+      FRONT_CHARGE_DISCOUNT = #{frontChargeDiscount,jdbcType=INTEGER},
+      MONTH_M_RATE = #{monthMRate,jdbcType=INTEGER},
+      HANDLE_CHARGE_RATE = #{handleChargeRate,jdbcType=INTEGER},
+      LOAN_TIMES = #{loanTimes,jdbcType=INTEGER},
+      PAWN = #{pawn,jdbcType=VARCHAR},
+      HANDLE_CHARGE = #{handleCharge,jdbcType=INTEGER},
+      MONTH_CHARGE_DISCOUNT = #{monthChargeDiscount,jdbcType=INTEGER},
+      GUARANTEE_FEE = #{guaranteeFee,jdbcType=INTEGER},
+      GUARANTEE_COMPANY = #{guaranteeCompany,jdbcType=VARCHAR},
+      def1 = #{def1,jdbcType=VARCHAR},
+      def2 = #{def2,jdbcType=VARCHAR},
+      def3 = #{def3,jdbcType=VARCHAR},
+      def4 = #{def4,jdbcType=VARCHAR},
+      def5 = #{def5,jdbcType=VARCHAR},
+      def6 = #{def6,jdbcType=VARCHAR},
+      def7 = #{def7,jdbcType=VARCHAR},
+      def8 = #{def8,jdbcType=VARCHAR},
+      def9 = #{def9,jdbcType=VARCHAR},
+      def10 = #{def10,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.finance.dao.BorrowerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.finance.bean.BorrowerInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="APPLY_CLIENT_ID" property="applyClientId" jdbcType="INTEGER" />
+    <result column="ECIF_ID" property="ecifId" jdbcType="INTEGER" />
+    <result column="CLIENT_NAME" property="clientName" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="OLD_NAME" property="oldName" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="NATION" property="nation" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="VARCHAR" />
+    <result column="MARITAL" property="marital" jdbcType="VARCHAR" />
+    <result column="HAVE_CHILDREN" property="haveChildren" jdbcType="INTEGER" />
+    <result column="CHILDREN_COUNT" property="childrenCount" jdbcType="INTEGER" />
+    <result column="NATIONALITY" property="nationality" jdbcType="VARCHAR" />
+    <result column="H_PROVINCE" property="hProvince" jdbcType="VARCHAR" />
+    <result column="H_CITY" property="hCity" jdbcType="VARCHAR" />
+    <result column="H_DRESS" property="hDress" jdbcType="VARCHAR" />
+    <result column="IDENTITY_TYPE" property="identityType" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NUM" property="identityNum" jdbcType="VARCHAR" />
+    <result column="IDENTITY_VALID_DATE" property="identityValidDate" jdbcType="VARCHAR" />
+    <result column="HAVE_CAR" property="haveCar" jdbcType="VARCHAR" />
+    <result column="HOUSE_EXPLAIN" property="houseExplain" jdbcType="VARCHAR" />
+    <result column="RESIDE_EXPLAIN" property="resideExplain" jdbcType="VARCHAR" />
+    <result column="RESIDE_YEAR" property="resideYear" jdbcType="VARCHAR" />
+    <result column="DEGREE" property="degree" jdbcType="VARCHAR" />
+    <result column="DIPLOMA" property="diploma" jdbcType="VARCHAR" />
+    <result column="YEAR_INCOME" property="yearIncome" jdbcType="INTEGER" />
+    <result column="INDUSTRY" property="industry" jdbcType="VARCHAR" />
+    <result column="JOB" property="job" jdbcType="VARCHAR" />
+    <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="COMPANY_TYPE" property="companyType" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="WORK_TIME" property="workTime" jdbcType="INTEGER" />
+    <result column="WORK_TIME_UNIT" property="workTimeUnit" jdbcType="VARCHAR" />
+    <result column="CLIENT_AREA" property="clientArea" jdbcType="VARCHAR" />
+    <result column="CLIENT_TYPE" property="clientType" jdbcType="VARCHAR" />
+    <result column="F_NATION" property="fNation" jdbcType="VARCHAR" />
+    <result column="F_PROVINCE" property="fProvince" jdbcType="VARCHAR" />
+    <result column="F_CITY" property="fCity" jdbcType="VARCHAR" />
+    <result column="F_AREA" property="fArea" jdbcType="VARCHAR" />
+    <result column="F_STREET" property="fStreet" jdbcType="VARCHAR" />
+    <result column="F_ZIPCODE" property="fZipcode" jdbcType="VARCHAR" />
+    <result column="C_NATION" property="cNation" jdbcType="VARCHAR" />
+    <result column="C_PROVINCE" property="cProvince" jdbcType="VARCHAR" />
+    <result column="C_CITY" property="cCity" jdbcType="VARCHAR" />
+    <result column="C_AREA" property="cArea" jdbcType="VARCHAR" />
+    <result column="C_STREET" property="cStreet" jdbcType="VARCHAR" />
+    <result column="C_ZIPCODE" property="cZipcode" jdbcType="VARCHAR" />
+    <result column="MOBILE1" property="mobile1" jdbcType="VARCHAR" />
+    <result column="MOBILE2" property="mobile2" jdbcType="VARCHAR" />
+    <result column="MOBILE3" property="mobile3" jdbcType="VARCHAR" />
+    <result column="F_TEL1" property="fTel1" jdbcType="VARCHAR" />
+    <result column="F_TEL2" property="fTel2" jdbcType="VARCHAR" />
+    <result column="F_TEL3" property="fTel3" jdbcType="VARCHAR" />
+    <result column="C_TEL1" property="cTel1" jdbcType="VARCHAR" />
+    <result column="C_TEL2" property="cTel2" jdbcType="VARCHAR" />
+    <result column="C_TEL3" property="cTel3" jdbcType="VARCHAR" />
+    <result column="EMAIL1" property="email1" jdbcType="VARCHAR" />
+    <result column="EMAIL2" property="email2" jdbcType="VARCHAR" />
+    <result column="EMAIL3" property="email3" jdbcType="VARCHAR" />
+    <result column="CREDIT_AMOUNT" property="creditAmount" jdbcType="INTEGER" />
+    <result column="SOCIALl_SECURITY" property="sociallSecurity" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TYPE" property="updateType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, APPLY_CLIENT_ID, ECIF_ID, CLIENT_NAME, MOBILE, OLD_NAME, SEX, NATION, BIRTHDAY, 
+    MARITAL, HAVE_CHILDREN, CHILDREN_COUNT, NATIONALITY, H_PROVINCE, H_CITY, H_DRESS, 
+    IDENTITY_TYPE, IDENTITY_NUM, IDENTITY_VALID_DATE, HAVE_CAR, HOUSE_EXPLAIN, RESIDE_EXPLAIN, 
+    RESIDE_YEAR, DEGREE, DIPLOMA, YEAR_INCOME, INDUSTRY, JOB, COMPANY, COMPANY_TYPE, 
+    DEPARTMENT, POSITION, WORK_TIME, WORK_TIME_UNIT, CLIENT_AREA, CLIENT_TYPE, F_NATION, 
+    F_PROVINCE, F_CITY, F_AREA, F_STREET, F_ZIPCODE, C_NATION, C_PROVINCE, C_CITY, C_AREA, 
+    C_STREET, C_ZIPCODE, MOBILE1, MOBILE2, MOBILE3, F_TEL1, F_TEL2, F_TEL3, C_TEL1, C_TEL2, 
+    C_TEL3, EMAIL1, EMAIL2, EMAIL3, CREDIT_AMOUNT, SOCIALl_SECURITY, CREATOR, CREATE_TIME, 
+    UPDATER, UPDATE_TIME, UPDATE_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.atguigu.finance.bean.BorrowerInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from nplm_borrower_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nplm_borrower_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nplm_borrower_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atguigu.finance.bean.BorrowerInfoExample" >
+    delete from nplm_borrower_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.finance.bean.BorrowerInfo" >
+    insert into nplm_borrower_info (id, APPLY_CLIENT_ID, ECIF_ID, 
+      CLIENT_NAME, MOBILE, OLD_NAME, 
+      SEX, NATION, BIRTHDAY, 
+      MARITAL, HAVE_CHILDREN, CHILDREN_COUNT, 
+      NATIONALITY, H_PROVINCE, H_CITY, 
+      H_DRESS, IDENTITY_TYPE, IDENTITY_NUM, 
+      IDENTITY_VALID_DATE, HAVE_CAR, HOUSE_EXPLAIN, 
+      RESIDE_EXPLAIN, RESIDE_YEAR, DEGREE, 
+      DIPLOMA, YEAR_INCOME, INDUSTRY, 
+      JOB, COMPANY, COMPANY_TYPE, 
+      DEPARTMENT, POSITION, WORK_TIME, 
+      WORK_TIME_UNIT, CLIENT_AREA, CLIENT_TYPE, 
+      F_NATION, F_PROVINCE, F_CITY, 
+      F_AREA, F_STREET, F_ZIPCODE, 
+      C_NATION, C_PROVINCE, C_CITY, 
+      C_AREA, C_STREET, C_ZIPCODE, 
+      MOBILE1, MOBILE2, MOBILE3, 
+      F_TEL1, F_TEL2, F_TEL3, 
+      C_TEL1, C_TEL2, C_TEL3, 
+      EMAIL1, EMAIL2, EMAIL3, 
+      CREDIT_AMOUNT, SOCIALl_SECURITY, CREATOR, 
+      CREATE_TIME, UPDATER, UPDATE_TIME, 
+      UPDATE_TYPE)
+    values (#{id,jdbcType=INTEGER}, #{applyClientId,jdbcType=INTEGER}, #{ecifId,jdbcType=INTEGER}, 
+      #{clientName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{oldName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{marital,jdbcType=VARCHAR}, #{haveChildren,jdbcType=INTEGER}, #{childrenCount,jdbcType=INTEGER}, 
+      #{nationality,jdbcType=VARCHAR}, #{hProvince,jdbcType=VARCHAR}, #{hCity,jdbcType=VARCHAR}, 
+      #{hDress,jdbcType=VARCHAR}, #{identityType,jdbcType=VARCHAR}, #{identityNum,jdbcType=VARCHAR}, 
+      #{identityValidDate,jdbcType=VARCHAR}, #{haveCar,jdbcType=VARCHAR}, #{houseExplain,jdbcType=VARCHAR}, 
+      #{resideExplain,jdbcType=VARCHAR}, #{resideYear,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
+      #{diploma,jdbcType=VARCHAR}, #{yearIncome,jdbcType=INTEGER}, #{industry,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{companyType,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{workTime,jdbcType=INTEGER}, 
+      #{workTimeUnit,jdbcType=VARCHAR}, #{clientArea,jdbcType=VARCHAR}, #{clientType,jdbcType=VARCHAR}, 
+      #{fNation,jdbcType=VARCHAR}, #{fProvince,jdbcType=VARCHAR}, #{fCity,jdbcType=VARCHAR}, 
+      #{fArea,jdbcType=VARCHAR}, #{fStreet,jdbcType=VARCHAR}, #{fZipcode,jdbcType=VARCHAR}, 
+      #{cNation,jdbcType=VARCHAR}, #{cProvince,jdbcType=VARCHAR}, #{cCity,jdbcType=VARCHAR}, 
+      #{cArea,jdbcType=VARCHAR}, #{cStreet,jdbcType=VARCHAR}, #{cZipcode,jdbcType=VARCHAR}, 
+      #{mobile1,jdbcType=VARCHAR}, #{mobile2,jdbcType=VARCHAR}, #{mobile3,jdbcType=VARCHAR}, 
+      #{fTel1,jdbcType=VARCHAR}, #{fTel2,jdbcType=VARCHAR}, #{fTel3,jdbcType=VARCHAR}, 
+      #{cTel1,jdbcType=VARCHAR}, #{cTel2,jdbcType=VARCHAR}, #{cTel3,jdbcType=VARCHAR}, 
+      #{email1,jdbcType=VARCHAR}, #{email2,jdbcType=VARCHAR}, #{email3,jdbcType=VARCHAR}, 
+      #{creditAmount,jdbcType=INTEGER}, #{sociallSecurity,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.finance.bean.BorrowerInfo" >
+    insert into nplm_borrower_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyClientId != null" >
+        APPLY_CLIENT_ID,
+      </if>
+      <if test="ecifId != null" >
+        ECIF_ID,
+      </if>
+      <if test="clientName != null" >
+        CLIENT_NAME,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="oldName != null" >
+        OLD_NAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="nation != null" >
+        NATION,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="marital != null" >
+        MARITAL,
+      </if>
+      <if test="haveChildren != null" >
+        HAVE_CHILDREN,
+      </if>
+      <if test="childrenCount != null" >
+        CHILDREN_COUNT,
+      </if>
+      <if test="nationality != null" >
+        NATIONALITY,
+      </if>
+      <if test="hProvince != null" >
+        H_PROVINCE,
+      </if>
+      <if test="hCity != null" >
+        H_CITY,
+      </if>
+      <if test="hDress != null" >
+        H_DRESS,
+      </if>
+      <if test="identityType != null" >
+        IDENTITY_TYPE,
+      </if>
+      <if test="identityNum != null" >
+        IDENTITY_NUM,
+      </if>
+      <if test="identityValidDate != null" >
+        IDENTITY_VALID_DATE,
+      </if>
+      <if test="haveCar != null" >
+        HAVE_CAR,
+      </if>
+      <if test="houseExplain != null" >
+        HOUSE_EXPLAIN,
+      </if>
+      <if test="resideExplain != null" >
+        RESIDE_EXPLAIN,
+      </if>
+      <if test="resideYear != null" >
+        RESIDE_YEAR,
+      </if>
+      <if test="degree != null" >
+        DEGREE,
+      </if>
+      <if test="diploma != null" >
+        DIPLOMA,
+      </if>
+      <if test="yearIncome != null" >
+        YEAR_INCOME,
+      </if>
+      <if test="industry != null" >
+        INDUSTRY,
+      </if>
+      <if test="job != null" >
+        JOB,
+      </if>
+      <if test="company != null" >
+        COMPANY,
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="position != null" >
+        POSITION,
+      </if>
+      <if test="workTime != null" >
+        WORK_TIME,
+      </if>
+      <if test="workTimeUnit != null" >
+        WORK_TIME_UNIT,
+      </if>
+      <if test="clientArea != null" >
+        CLIENT_AREA,
+      </if>
+      <if test="clientType != null" >
+        CLIENT_TYPE,
+      </if>
+      <if test="fNation != null" >
+        F_NATION,
+      </if>
+      <if test="fProvince != null" >
+        F_PROVINCE,
+      </if>
+      <if test="fCity != null" >
+        F_CITY,
+      </if>
+      <if test="fArea != null" >
+        F_AREA,
+      </if>
+      <if test="fStreet != null" >
+        F_STREET,
+      </if>
+      <if test="fZipcode != null" >
+        F_ZIPCODE,
+      </if>
+      <if test="cNation != null" >
+        C_NATION,
+      </if>
+      <if test="cProvince != null" >
+        C_PROVINCE,
+      </if>
+      <if test="cCity != null" >
+        C_CITY,
+      </if>
+      <if test="cArea != null" >
+        C_AREA,
+      </if>
+      <if test="cStreet != null" >
+        C_STREET,
+      </if>
+      <if test="cZipcode != null" >
+        C_ZIPCODE,
+      </if>
+      <if test="mobile1 != null" >
+        MOBILE1,
+      </if>
+      <if test="mobile2 != null" >
+        MOBILE2,
+      </if>
+      <if test="mobile3 != null" >
+        MOBILE3,
+      </if>
+      <if test="fTel1 != null" >
+        F_TEL1,
+      </if>
+      <if test="fTel2 != null" >
+        F_TEL2,
+      </if>
+      <if test="fTel3 != null" >
+        F_TEL3,
+      </if>
+      <if test="cTel1 != null" >
+        C_TEL1,
+      </if>
+      <if test="cTel2 != null" >
+        C_TEL2,
+      </if>
+      <if test="cTel3 != null" >
+        C_TEL3,
+      </if>
+      <if test="email1 != null" >
+        EMAIL1,
+      </if>
+      <if test="email2 != null" >
+        EMAIL2,
+      </if>
+      <if test="email3 != null" >
+        EMAIL3,
+      </if>
+      <if test="creditAmount != null" >
+        CREDIT_AMOUNT,
+      </if>
+      <if test="sociallSecurity != null" >
+        SOCIALl_SECURITY,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="applyClientId != null" >
+        #{applyClientId,jdbcType=INTEGER},
+      </if>
+      <if test="ecifId != null" >
+        #{ecifId,jdbcType=INTEGER},
+      </if>
+      <if test="clientName != null" >
+        #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="oldName != null" >
+        #{oldName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="marital != null" >
+        #{marital,jdbcType=VARCHAR},
+      </if>
+      <if test="haveChildren != null" >
+        #{haveChildren,jdbcType=INTEGER},
+      </if>
+      <if test="childrenCount != null" >
+        #{childrenCount,jdbcType=INTEGER},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="hProvince != null" >
+        #{hProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="hCity != null" >
+        #{hCity,jdbcType=VARCHAR},
+      </if>
+      <if test="hDress != null" >
+        #{hDress,jdbcType=VARCHAR},
+      </if>
+      <if test="identityType != null" >
+        #{identityType,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNum != null" >
+        #{identityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="identityValidDate != null" >
+        #{identityValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="haveCar != null" >
+        #{haveCar,jdbcType=VARCHAR},
+      </if>
+      <if test="houseExplain != null" >
+        #{houseExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="resideExplain != null" >
+        #{resideExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="resideYear != null" >
+        #{resideYear,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="diploma != null" >
+        #{diploma,jdbcType=VARCHAR},
+      </if>
+      <if test="yearIncome != null" >
+        #{yearIncome,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null" >
+        #{workTime,jdbcType=INTEGER},
+      </if>
+      <if test="workTimeUnit != null" >
+        #{workTimeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="clientArea != null" >
+        #{clientArea,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="fNation != null" >
+        #{fNation,jdbcType=VARCHAR},
+      </if>
+      <if test="fProvince != null" >
+        #{fProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="fCity != null" >
+        #{fCity,jdbcType=VARCHAR},
+      </if>
+      <if test="fArea != null" >
+        #{fArea,jdbcType=VARCHAR},
+      </if>
+      <if test="fStreet != null" >
+        #{fStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="fZipcode != null" >
+        #{fZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cNation != null" >
+        #{cNation,jdbcType=VARCHAR},
+      </if>
+      <if test="cProvince != null" >
+        #{cProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="cCity != null" >
+        #{cCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cArea != null" >
+        #{cArea,jdbcType=VARCHAR},
+      </if>
+      <if test="cStreet != null" >
+        #{cStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="cZipcode != null" >
+        #{cZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile1 != null" >
+        #{mobile1,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile2 != null" >
+        #{mobile2,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile3 != null" >
+        #{mobile3,jdbcType=VARCHAR},
+      </if>
+      <if test="fTel1 != null" >
+        #{fTel1,jdbcType=VARCHAR},
+      </if>
+      <if test="fTel2 != null" >
+        #{fTel2,jdbcType=VARCHAR},
+      </if>
+      <if test="fTel3 != null" >
+        #{fTel3,jdbcType=VARCHAR},
+      </if>
+      <if test="cTel1 != null" >
+        #{cTel1,jdbcType=VARCHAR},
+      </if>
+      <if test="cTel2 != null" >
+        #{cTel2,jdbcType=VARCHAR},
+      </if>
+      <if test="cTel3 != null" >
+        #{cTel3,jdbcType=VARCHAR},
+      </if>
+      <if test="email1 != null" >
+        #{email1,jdbcType=VARCHAR},
+      </if>
+      <if test="email2 != null" >
+        #{email2,jdbcType=VARCHAR},
+      </if>
+      <if test="email3 != null" >
+        #{email3,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmount != null" >
+        #{creditAmount,jdbcType=INTEGER},
+      </if>
+      <if test="sociallSecurity != null" >
+        #{sociallSecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateType != null" >
+        #{updateType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atguigu.finance.bean.BorrowerInfoExample" resultType="java.lang.Integer" >
+    select count(*) from nplm_borrower_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update nplm_borrower_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyClientId != null" >
+        APPLY_CLIENT_ID = #{record.applyClientId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ecifId != null" >
+        ECIF_ID = #{record.ecifId,jdbcType=INTEGER},
+      </if>
+      <if test="record.clientName != null" >
+        CLIENT_NAME = #{record.clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldName != null" >
+        OLD_NAME = #{record.oldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        SEX = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        NATION = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        BIRTHDAY = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marital != null" >
+        MARITAL = #{record.marital,jdbcType=VARCHAR},
+      </if>
+      <if test="record.haveChildren != null" >
+        HAVE_CHILDREN = #{record.haveChildren,jdbcType=INTEGER},
+      </if>
+      <if test="record.childrenCount != null" >
+        CHILDREN_COUNT = #{record.childrenCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.nationality != null" >
+        NATIONALITY = #{record.nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hProvince != null" >
+        H_PROVINCE = #{record.hProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hCity != null" >
+        H_CITY = #{record.hCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hDress != null" >
+        H_DRESS = #{record.hDress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityType != null" >
+        IDENTITY_TYPE = #{record.identityType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityNum != null" >
+        IDENTITY_NUM = #{record.identityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityValidDate != null" >
+        IDENTITY_VALID_DATE = #{record.identityValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.haveCar != null" >
+        HAVE_CAR = #{record.haveCar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseExplain != null" >
+        HOUSE_EXPLAIN = #{record.houseExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resideExplain != null" >
+        RESIDE_EXPLAIN = #{record.resideExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resideYear != null" >
+        RESIDE_YEAR = #{record.resideYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null" >
+        DEGREE = #{record.degree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diploma != null" >
+        DIPLOMA = #{record.diploma,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yearIncome != null" >
+        YEAR_INCOME = #{record.yearIncome,jdbcType=INTEGER},
+      </if>
+      <if test="record.industry != null" >
+        INDUSTRY = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null" >
+        JOB = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.company != null" >
+        COMPANY = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyType != null" >
+        COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null" >
+        DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null" >
+        POSITION = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTime != null" >
+        WORK_TIME = #{record.workTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.workTimeUnit != null" >
+        WORK_TIME_UNIT = #{record.workTimeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientArea != null" >
+        CLIENT_AREA = #{record.clientArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientType != null" >
+        CLIENT_TYPE = #{record.clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fNation != null" >
+        F_NATION = #{record.fNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fProvince != null" >
+        F_PROVINCE = #{record.fProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fCity != null" >
+        F_CITY = #{record.fCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fArea != null" >
+        F_AREA = #{record.fArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fStreet != null" >
+        F_STREET = #{record.fStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fZipcode != null" >
+        F_ZIPCODE = #{record.fZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cNation != null" >
+        C_NATION = #{record.cNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cProvince != null" >
+        C_PROVINCE = #{record.cProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cCity != null" >
+        C_CITY = #{record.cCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cArea != null" >
+        C_AREA = #{record.cArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cStreet != null" >
+        C_STREET = #{record.cStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cZipcode != null" >
+        C_ZIPCODE = #{record.cZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile1 != null" >
+        MOBILE1 = #{record.mobile1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile2 != null" >
+        MOBILE2 = #{record.mobile2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile3 != null" >
+        MOBILE3 = #{record.mobile3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fTel1 != null" >
+        F_TEL1 = #{record.fTel1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fTel2 != null" >
+        F_TEL2 = #{record.fTel2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fTel3 != null" >
+        F_TEL3 = #{record.fTel3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cTel1 != null" >
+        C_TEL1 = #{record.cTel1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cTel2 != null" >
+        C_TEL2 = #{record.cTel2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cTel3 != null" >
+        C_TEL3 = #{record.cTel3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email1 != null" >
+        EMAIL1 = #{record.email1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email2 != null" >
+        EMAIL2 = #{record.email2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email3 != null" >
+        EMAIL3 = #{record.email3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditAmount != null" >
+        CREDIT_AMOUNT = #{record.creditAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.sociallSecurity != null" >
+        SOCIALl_SECURITY = #{record.sociallSecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null" >
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateType != null" >
+        UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update nplm_borrower_info
+    set id = #{record.id,jdbcType=INTEGER},
+      APPLY_CLIENT_ID = #{record.applyClientId,jdbcType=INTEGER},
+      ECIF_ID = #{record.ecifId,jdbcType=INTEGER},
+      CLIENT_NAME = #{record.clientName,jdbcType=VARCHAR},
+      MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      OLD_NAME = #{record.oldName,jdbcType=VARCHAR},
+      SEX = #{record.sex,jdbcType=VARCHAR},
+      NATION = #{record.nation,jdbcType=VARCHAR},
+      BIRTHDAY = #{record.birthday,jdbcType=VARCHAR},
+      MARITAL = #{record.marital,jdbcType=VARCHAR},
+      HAVE_CHILDREN = #{record.haveChildren,jdbcType=INTEGER},
+      CHILDREN_COUNT = #{record.childrenCount,jdbcType=INTEGER},
+      NATIONALITY = #{record.nationality,jdbcType=VARCHAR},
+      H_PROVINCE = #{record.hProvince,jdbcType=VARCHAR},
+      H_CITY = #{record.hCity,jdbcType=VARCHAR},
+      H_DRESS = #{record.hDress,jdbcType=VARCHAR},
+      IDENTITY_TYPE = #{record.identityType,jdbcType=VARCHAR},
+      IDENTITY_NUM = #{record.identityNum,jdbcType=VARCHAR},
+      IDENTITY_VALID_DATE = #{record.identityValidDate,jdbcType=VARCHAR},
+      HAVE_CAR = #{record.haveCar,jdbcType=VARCHAR},
+      HOUSE_EXPLAIN = #{record.houseExplain,jdbcType=VARCHAR},
+      RESIDE_EXPLAIN = #{record.resideExplain,jdbcType=VARCHAR},
+      RESIDE_YEAR = #{record.resideYear,jdbcType=VARCHAR},
+      DEGREE = #{record.degree,jdbcType=VARCHAR},
+      DIPLOMA = #{record.diploma,jdbcType=VARCHAR},
+      YEAR_INCOME = #{record.yearIncome,jdbcType=INTEGER},
+      INDUSTRY = #{record.industry,jdbcType=VARCHAR},
+      JOB = #{record.job,jdbcType=VARCHAR},
+      COMPANY = #{record.company,jdbcType=VARCHAR},
+      COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      POSITION = #{record.position,jdbcType=VARCHAR},
+      WORK_TIME = #{record.workTime,jdbcType=INTEGER},
+      WORK_TIME_UNIT = #{record.workTimeUnit,jdbcType=VARCHAR},
+      CLIENT_AREA = #{record.clientArea,jdbcType=VARCHAR},
+      CLIENT_TYPE = #{record.clientType,jdbcType=VARCHAR},
+      F_NATION = #{record.fNation,jdbcType=VARCHAR},
+      F_PROVINCE = #{record.fProvince,jdbcType=VARCHAR},
+      F_CITY = #{record.fCity,jdbcType=VARCHAR},
+      F_AREA = #{record.fArea,jdbcType=VARCHAR},
+      F_STREET = #{record.fStreet,jdbcType=VARCHAR},
+      F_ZIPCODE = #{record.fZipcode,jdbcType=VARCHAR},
+      C_NATION = #{record.cNation,jdbcType=VARCHAR},
+      C_PROVINCE = #{record.cProvince,jdbcType=VARCHAR},
+      C_CITY = #{record.cCity,jdbcType=VARCHAR},
+      C_AREA = #{record.cArea,jdbcType=VARCHAR},
+      C_STREET = #{record.cStreet,jdbcType=VARCHAR},
+      C_ZIPCODE = #{record.cZipcode,jdbcType=VARCHAR},
+      MOBILE1 = #{record.mobile1,jdbcType=VARCHAR},
+      MOBILE2 = #{record.mobile2,jdbcType=VARCHAR},
+      MOBILE3 = #{record.mobile3,jdbcType=VARCHAR},
+      F_TEL1 = #{record.fTel1,jdbcType=VARCHAR},
+      F_TEL2 = #{record.fTel2,jdbcType=VARCHAR},
+      F_TEL3 = #{record.fTel3,jdbcType=VARCHAR},
+      C_TEL1 = #{record.cTel1,jdbcType=VARCHAR},
+      C_TEL2 = #{record.cTel2,jdbcType=VARCHAR},
+      C_TEL3 = #{record.cTel3,jdbcType=VARCHAR},
+      EMAIL1 = #{record.email1,jdbcType=VARCHAR},
+      EMAIL2 = #{record.email2,jdbcType=VARCHAR},
+      EMAIL3 = #{record.email3,jdbcType=VARCHAR},
+      CREDIT_AMOUNT = #{record.creditAmount,jdbcType=INTEGER},
+      SOCIALl_SECURITY = #{record.sociallSecurity,jdbcType=VARCHAR},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.finance.bean.BorrowerInfo" >
+    update nplm_borrower_info
+    <set >
+      <if test="applyClientId != null" >
+        APPLY_CLIENT_ID = #{applyClientId,jdbcType=INTEGER},
+      </if>
+      <if test="ecifId != null" >
+        ECIF_ID = #{ecifId,jdbcType=INTEGER},
+      </if>
+      <if test="clientName != null" >
+        CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="oldName != null" >
+        OLD_NAME = #{oldName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="marital != null" >
+        MARITAL = #{marital,jdbcType=VARCHAR},
+      </if>
+      <if test="haveChildren != null" >
+        HAVE_CHILDREN = #{haveChildren,jdbcType=INTEGER},
+      </if>
+      <if test="childrenCount != null" >
+        CHILDREN_COUNT = #{childrenCount,jdbcType=INTEGER},
+      </if>
+      <if test="nationality != null" >
+        NATIONALITY = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="hProvince != null" >
+        H_PROVINCE = #{hProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="hCity != null" >
+        H_CITY = #{hCity,jdbcType=VARCHAR},
+      </if>
+      <if test="hDress != null" >
+        H_DRESS = #{hDress,jdbcType=VARCHAR},
+      </if>
+      <if test="identityType != null" >
+        IDENTITY_TYPE = #{identityType,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNum != null" >
+        IDENTITY_NUM = #{identityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="identityValidDate != null" >
+        IDENTITY_VALID_DATE = #{identityValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="haveCar != null" >
+        HAVE_CAR = #{haveCar,jdbcType=VARCHAR},
+      </if>
+      <if test="houseExplain != null" >
+        HOUSE_EXPLAIN = #{houseExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="resideExplain != null" >
+        RESIDE_EXPLAIN = #{resideExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="resideYear != null" >
+        RESIDE_YEAR = #{resideYear,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        DEGREE = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="diploma != null" >
+        DIPLOMA = #{diploma,jdbcType=VARCHAR},
+      </if>
+      <if test="yearIncome != null" >
+        YEAR_INCOME = #{yearIncome,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null" >
+        INDUSTRY = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null" >
+        WORK_TIME = #{workTime,jdbcType=INTEGER},
+      </if>
+      <if test="workTimeUnit != null" >
+        WORK_TIME_UNIT = #{workTimeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="clientArea != null" >
+        CLIENT_AREA = #{clientArea,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        CLIENT_TYPE = #{clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="fNation != null" >
+        F_NATION = #{fNation,jdbcType=VARCHAR},
+      </if>
+      <if test="fProvince != null" >
+        F_PROVINCE = #{fProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="fCity != null" >
+        F_CITY = #{fCity,jdbcType=VARCHAR},
+      </if>
+      <if test="fArea != null" >
+        F_AREA = #{fArea,jdbcType=VARCHAR},
+      </if>
+      <if test="fStreet != null" >
+        F_STREET = #{fStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="fZipcode != null" >
+        F_ZIPCODE = #{fZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cNation != null" >
+        C_NATION = #{cNation,jdbcType=VARCHAR},
+      </if>
+      <if test="cProvince != null" >
+        C_PROVINCE = #{cProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="cCity != null" >
+        C_CITY = #{cCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cArea != null" >
+        C_AREA = #{cArea,jdbcType=VARCHAR},
+      </if>
+      <if test="cStreet != null" >
+        C_STREET = #{cStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="cZipcode != null" >
+        C_ZIPCODE = #{cZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile1 != null" >
+        MOBILE1 = #{mobile1,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile2 != null" >
+        MOBILE2 = #{mobile2,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile3 != null" >
+        MOBILE3 = #{mobile3,jdbcType=VARCHAR},
+      </if>
+      <if test="fTel1 != null" >
+        F_TEL1 = #{fTel1,jdbcType=VARCHAR},
+      </if>
+      <if test="fTel2 != null" >
+        F_TEL2 = #{fTel2,jdbcType=VARCHAR},
+      </if>
+      <if test="fTel3 != null" >
+        F_TEL3 = #{fTel3,jdbcType=VARCHAR},
+      </if>
+      <if test="cTel1 != null" >
+        C_TEL1 = #{cTel1,jdbcType=VARCHAR},
+      </if>
+      <if test="cTel2 != null" >
+        C_TEL2 = #{cTel2,jdbcType=VARCHAR},
+      </if>
+      <if test="cTel3 != null" >
+        C_TEL3 = #{cTel3,jdbcType=VARCHAR},
+      </if>
+      <if test="email1 != null" >
+        EMAIL1 = #{email1,jdbcType=VARCHAR},
+      </if>
+      <if test="email2 != null" >
+        EMAIL2 = #{email2,jdbcType=VARCHAR},
+      </if>
+      <if test="email3 != null" >
+        EMAIL3 = #{email3,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmount != null" >
+        CREDIT_AMOUNT = #{creditAmount,jdbcType=INTEGER},
+      </if>
+      <if test="sociallSecurity != null" >
+        SOCIALl_SECURITY = #{sociallSecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE = #{updateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.finance.bean.BorrowerInfo" >
+    update nplm_borrower_info
+    set APPLY_CLIENT_ID = #{applyClientId,jdbcType=INTEGER},
+      ECIF_ID = #{ecifId,jdbcType=INTEGER},
+      CLIENT_NAME = #{clientName,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      OLD_NAME = #{oldName,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      NATION = #{nation,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      MARITAL = #{marital,jdbcType=VARCHAR},
+      HAVE_CHILDREN = #{haveChildren,jdbcType=INTEGER},
+      CHILDREN_COUNT = #{childrenCount,jdbcType=INTEGER},
+      NATIONALITY = #{nationality,jdbcType=VARCHAR},
+      H_PROVINCE = #{hProvince,jdbcType=VARCHAR},
+      H_CITY = #{hCity,jdbcType=VARCHAR},
+      H_DRESS = #{hDress,jdbcType=VARCHAR},
+      IDENTITY_TYPE = #{identityType,jdbcType=VARCHAR},
+      IDENTITY_NUM = #{identityNum,jdbcType=VARCHAR},
+      IDENTITY_VALID_DATE = #{identityValidDate,jdbcType=VARCHAR},
+      HAVE_CAR = #{haveCar,jdbcType=VARCHAR},
+      HOUSE_EXPLAIN = #{houseExplain,jdbcType=VARCHAR},
+      RESIDE_EXPLAIN = #{resideExplain,jdbcType=VARCHAR},
+      RESIDE_YEAR = #{resideYear,jdbcType=VARCHAR},
+      DEGREE = #{degree,jdbcType=VARCHAR},
+      DIPLOMA = #{diploma,jdbcType=VARCHAR},
+      YEAR_INCOME = #{yearIncome,jdbcType=INTEGER},
+      INDUSTRY = #{industry,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      COMPANY = #{company,jdbcType=VARCHAR},
+      COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      WORK_TIME = #{workTime,jdbcType=INTEGER},
+      WORK_TIME_UNIT = #{workTimeUnit,jdbcType=VARCHAR},
+      CLIENT_AREA = #{clientArea,jdbcType=VARCHAR},
+      CLIENT_TYPE = #{clientType,jdbcType=VARCHAR},
+      F_NATION = #{fNation,jdbcType=VARCHAR},
+      F_PROVINCE = #{fProvince,jdbcType=VARCHAR},
+      F_CITY = #{fCity,jdbcType=VARCHAR},
+      F_AREA = #{fArea,jdbcType=VARCHAR},
+      F_STREET = #{fStreet,jdbcType=VARCHAR},
+      F_ZIPCODE = #{fZipcode,jdbcType=VARCHAR},
+      C_NATION = #{cNation,jdbcType=VARCHAR},
+      C_PROVINCE = #{cProvince,jdbcType=VARCHAR},
+      C_CITY = #{cCity,jdbcType=VARCHAR},
+      C_AREA = #{cArea,jdbcType=VARCHAR},
+      C_STREET = #{cStreet,jdbcType=VARCHAR},
+      C_ZIPCODE = #{cZipcode,jdbcType=VARCHAR},
+      MOBILE1 = #{mobile1,jdbcType=VARCHAR},
+      MOBILE2 = #{mobile2,jdbcType=VARCHAR},
+      MOBILE3 = #{mobile3,jdbcType=VARCHAR},
+      F_TEL1 = #{fTel1,jdbcType=VARCHAR},
+      F_TEL2 = #{fTel2,jdbcType=VARCHAR},
+      F_TEL3 = #{fTel3,jdbcType=VARCHAR},
+      C_TEL1 = #{cTel1,jdbcType=VARCHAR},
+      C_TEL2 = #{cTel2,jdbcType=VARCHAR},
+      C_TEL3 = #{cTel3,jdbcType=VARCHAR},
+      EMAIL1 = #{email1,jdbcType=VARCHAR},
+      EMAIL2 = #{email2,jdbcType=VARCHAR},
+      EMAIL3 = #{email3,jdbcType=VARCHAR},
+      CREDIT_AMOUNT = #{creditAmount,jdbcType=INTEGER},
+      SOCIALl_SECURITY = #{sociallSecurity,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_TYPE = #{updateType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

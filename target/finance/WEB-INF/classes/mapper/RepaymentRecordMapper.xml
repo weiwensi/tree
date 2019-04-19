@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.finance.dao.RepaymentRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.finance.bean.RepaymentRecord" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BUSINESS_REQUEST_ID" property="businessRequestId" jdbcType="INTEGER" />
+    <result column="LOAN_CONTRACT_NUM" property="loanContractNum" jdbcType="INTEGER" />
+    <result column="REPAYMENT_DATE" property="repaymentDate" jdbcType="DATE" />
+    <result column="OVERDUE_DAYS" property="overdueDays" jdbcType="INTEGER" />
+    <result column="OVERDUE_AMOUNT" property="overdueAmount" jdbcType="INTEGER" />
+    <result column="REPAYMENT_AMOUNT" property="repaymentAmount" jdbcType="INTEGER" />
+    <result column="SUCCESS_AMOUNT" property="successAmount" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="SPECIAL_CODE" property="specialCode" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="data_create_type" property="dataCreateType" jdbcType="VARCHAR" />
+    <result column="RESERVE_TIME" property="reserveTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+    <result column="ACCT_IDEN_TYPE" property="acctIdenType" jdbcType="VARCHAR" />
+    <result column="ACCT_IDEN_NUM" property="acctIdenNum" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_NO" property="accountNo" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_TYPE" property="accountType" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_BANKID" property="accountBankid" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_BRANCH_NO" property="accountBranchNo" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_BANK_NAME" property="accountBankName" jdbcType="VARCHAR" />
+    <result column="PUBLIC_PRIVATE" property="publicPrivate" jdbcType="VARCHAR" />
+    <result column="ACT_PROVINCE" property="actProvince" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_CITY" property="accountCity" jdbcType="VARCHAR" />
+    <result column="UPDATE_TYPE" property="updateType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, BUSINESS_REQUEST_ID, LOAN_CONTRACT_NUM, REPAYMENT_DATE, OVERDUE_DAYS, OVERDUE_AMOUNT, 
+    REPAYMENT_AMOUNT, SUCCESS_AMOUNT, STATUS, REMARK, SPECIAL_CODE, SORT, data_create_type, 
+    RESERVE_TIME, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, ACCOUNT_NAME, ACCT_IDEN_TYPE, 
+    ACCT_IDEN_NUM, ACCOUNT_NO, ACCOUNT_TYPE, ACCOUNT_BANKID, ACCOUNT_BRANCH_NO, ACCOUNT_BANK_NAME, 
+    PUBLIC_PRIVATE, ACT_PROVINCE, ACCOUNT_CITY, UPDATE_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.atguigu.finance.bean.RepaymentRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from nplm_repayment_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nplm_repayment_record
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nplm_repayment_record
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atguigu.finance.bean.RepaymentRecordExample" >
+    delete from nplm_repayment_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.finance.bean.RepaymentRecord" >
+    insert into nplm_repayment_record (ID, BUSINESS_REQUEST_ID, LOAN_CONTRACT_NUM, 
+      REPAYMENT_DATE, OVERDUE_DAYS, OVERDUE_AMOUNT, 
+      REPAYMENT_AMOUNT, SUCCESS_AMOUNT, STATUS, 
+      REMARK, SPECIAL_CODE, SORT, 
+      data_create_type, RESERVE_TIME, CREATOR, 
+      CREATE_TIME, UPDATER, UPDATE_TIME, 
+      ACCOUNT_NAME, ACCT_IDEN_TYPE, ACCT_IDEN_NUM, 
+      ACCOUNT_NO, ACCOUNT_TYPE, ACCOUNT_BANKID, 
+      ACCOUNT_BRANCH_NO, ACCOUNT_BANK_NAME, PUBLIC_PRIVATE, 
+      ACT_PROVINCE, ACCOUNT_CITY, UPDATE_TYPE
+      )
+    values (#{id,jdbcType=INTEGER}, #{businessRequestId,jdbcType=INTEGER}, #{loanContractNum,jdbcType=INTEGER}, 
+      #{repaymentDate,jdbcType=DATE}, #{overdueDays,jdbcType=INTEGER}, #{overdueAmount,jdbcType=INTEGER}, 
+      #{repaymentAmount,jdbcType=INTEGER}, #{successAmount,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{specialCode,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{dataCreateType,jdbcType=VARCHAR}, #{reserveTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{accountName,jdbcType=VARCHAR}, #{acctIdenType,jdbcType=VARCHAR}, #{acctIdenNum,jdbcType=VARCHAR}, 
+      #{accountNo,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR}, #{accountBankid,jdbcType=VARCHAR}, 
+      #{accountBranchNo,jdbcType=VARCHAR}, #{accountBankName,jdbcType=VARCHAR}, #{publicPrivate,jdbcType=VARCHAR}, 
+      #{actProvince,jdbcType=VARCHAR}, #{accountCity,jdbcType=VARCHAR}, #{updateType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.finance.bean.RepaymentRecord" >
+    insert into nplm_repayment_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="businessRequestId != null" >
+        BUSINESS_REQUEST_ID,
+      </if>
+      <if test="loanContractNum != null" >
+        LOAN_CONTRACT_NUM,
+      </if>
+      <if test="repaymentDate != null" >
+        REPAYMENT_DATE,
+      </if>
+      <if test="overdueDays != null" >
+        OVERDUE_DAYS,
+      </if>
+      <if test="overdueAmount != null" >
+        OVERDUE_AMOUNT,
+      </if>
+      <if test="repaymentAmount != null" >
+        REPAYMENT_AMOUNT,
+      </if>
+      <if test="successAmount != null" >
+        SUCCESS_AMOUNT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="specialCode != null" >
+        SPECIAL_CODE,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="dataCreateType != null" >
+        data_create_type,
+      </if>
+      <if test="reserveTime != null" >
+        RESERVE_TIME,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="accountName != null" >
+        ACCOUNT_NAME,
+      </if>
+      <if test="acctIdenType != null" >
+        ACCT_IDEN_TYPE,
+      </if>
+      <if test="acctIdenNum != null" >
+        ACCT_IDEN_NUM,
+      </if>
+      <if test="accountNo != null" >
+        ACCOUNT_NO,
+      </if>
+      <if test="accountType != null" >
+        ACCOUNT_TYPE,
+      </if>
+      <if test="accountBankid != null" >
+        ACCOUNT_BANKID,
+      </if>
+      <if test="accountBranchNo != null" >
+        ACCOUNT_BRANCH_NO,
+      </if>
+      <if test="accountBankName != null" >
+        ACCOUNT_BANK_NAME,
+      </if>
+      <if test="publicPrivate != null" >
+        PUBLIC_PRIVATE,
+      </if>
+      <if test="actProvince != null" >
+        ACT_PROVINCE,
+      </if>
+      <if test="accountCity != null" >
+        ACCOUNT_CITY,
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="businessRequestId != null" >
+        #{businessRequestId,jdbcType=INTEGER},
+      </if>
+      <if test="loanContractNum != null" >
+        #{loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentDate != null" >
+        #{repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="overdueDays != null" >
+        #{overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="overdueAmount != null" >
+        #{overdueAmount,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentAmount != null" >
+        #{repaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="successAmount != null" >
+        #{successAmount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="specialCode != null" >
+        #{specialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="dataCreateType != null" >
+        #{dataCreateType,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveTime != null" >
+        #{reserveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctIdenType != null" >
+        #{acctIdenType,jdbcType=VARCHAR},
+      </if>
+      <if test="acctIdenNum != null" >
+        #{acctIdenNum,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBankid != null" >
+        #{accountBankid,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBranchNo != null" >
+        #{accountBranchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBankName != null" >
+        #{accountBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="publicPrivate != null" >
+        #{publicPrivate,jdbcType=VARCHAR},
+      </if>
+      <if test="actProvince != null" >
+        #{actProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCity != null" >
+        #{accountCity,jdbcType=VARCHAR},
+      </if>
+      <if test="updateType != null" >
+        #{updateType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atguigu.finance.bean.RepaymentRecordExample" resultType="java.lang.Integer" >
+    select count(*) from nplm_repayment_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update nplm_repayment_record
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessRequestId != null" >
+        BUSINESS_REQUEST_ID = #{record.businessRequestId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loanContractNum != null" >
+        LOAN_CONTRACT_NUM = #{record.loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.repaymentDate != null" >
+        REPAYMENT_DATE = #{record.repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="record.overdueDays != null" >
+        OVERDUE_DAYS = #{record.overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueAmount != null" >
+        OVERDUE_AMOUNT = #{record.overdueAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.repaymentAmount != null" >
+        REPAYMENT_AMOUNT = #{record.repaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.successAmount != null" >
+        SUCCESS_AMOUNT = #{record.successAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialCode != null" >
+        SPECIAL_CODE = #{record.specialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        SORT = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataCreateType != null" >
+        data_create_type = #{record.dataCreateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reserveTime != null" >
+        RESERVE_TIME = #{record.reserveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creator != null" >
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null" >
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accountName != null" >
+        ACCOUNT_NAME = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctIdenType != null" >
+        ACCT_IDEN_TYPE = #{record.acctIdenType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctIdenNum != null" >
+        ACCT_IDEN_NUM = #{record.acctIdenNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNo != null" >
+        ACCOUNT_NO = #{record.accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountType != null" >
+        ACCOUNT_TYPE = #{record.accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountBankid != null" >
+        ACCOUNT_BANKID = #{record.accountBankid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountBranchNo != null" >
+        ACCOUNT_BRANCH_NO = #{record.accountBranchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountBankName != null" >
+        ACCOUNT_BANK_NAME = #{record.accountBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publicPrivate != null" >
+        PUBLIC_PRIVATE = #{record.publicPrivate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actProvince != null" >
+        ACT_PROVINCE = #{record.actProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountCity != null" >
+        ACCOUNT_CITY = #{record.accountCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateType != null" >
+        UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update nplm_repayment_record
+    set ID = #{record.id,jdbcType=INTEGER},
+      BUSINESS_REQUEST_ID = #{record.businessRequestId,jdbcType=INTEGER},
+      LOAN_CONTRACT_NUM = #{record.loanContractNum,jdbcType=INTEGER},
+      REPAYMENT_DATE = #{record.repaymentDate,jdbcType=DATE},
+      OVERDUE_DAYS = #{record.overdueDays,jdbcType=INTEGER},
+      OVERDUE_AMOUNT = #{record.overdueAmount,jdbcType=INTEGER},
+      REPAYMENT_AMOUNT = #{record.repaymentAmount,jdbcType=INTEGER},
+      SUCCESS_AMOUNT = #{record.successAmount,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      SPECIAL_CODE = #{record.specialCode,jdbcType=VARCHAR},
+      SORT = #{record.sort,jdbcType=INTEGER},
+      data_create_type = #{record.dataCreateType,jdbcType=VARCHAR},
+      RESERVE_TIME = #{record.reserveTime,jdbcType=TIMESTAMP},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      ACCOUNT_NAME = #{record.accountName,jdbcType=VARCHAR},
+      ACCT_IDEN_TYPE = #{record.acctIdenType,jdbcType=VARCHAR},
+      ACCT_IDEN_NUM = #{record.acctIdenNum,jdbcType=VARCHAR},
+      ACCOUNT_NO = #{record.accountNo,jdbcType=VARCHAR},
+      ACCOUNT_TYPE = #{record.accountType,jdbcType=VARCHAR},
+      ACCOUNT_BANKID = #{record.accountBankid,jdbcType=VARCHAR},
+      ACCOUNT_BRANCH_NO = #{record.accountBranchNo,jdbcType=VARCHAR},
+      ACCOUNT_BANK_NAME = #{record.accountBankName,jdbcType=VARCHAR},
+      PUBLIC_PRIVATE = #{record.publicPrivate,jdbcType=VARCHAR},
+      ACT_PROVINCE = #{record.actProvince,jdbcType=VARCHAR},
+      ACCOUNT_CITY = #{record.accountCity,jdbcType=VARCHAR},
+      UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.finance.bean.RepaymentRecord" >
+    update nplm_repayment_record
+    <set >
+      <if test="businessRequestId != null" >
+        BUSINESS_REQUEST_ID = #{businessRequestId,jdbcType=INTEGER},
+      </if>
+      <if test="loanContractNum != null" >
+        LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentDate != null" >
+        REPAYMENT_DATE = #{repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="overdueDays != null" >
+        OVERDUE_DAYS = #{overdueDays,jdbcType=INTEGER},
+      </if>
+      <if test="overdueAmount != null" >
+        OVERDUE_AMOUNT = #{overdueAmount,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentAmount != null" >
+        REPAYMENT_AMOUNT = #{repaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="successAmount != null" >
+        SUCCESS_AMOUNT = #{successAmount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="specialCode != null" >
+        SPECIAL_CODE = #{specialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="dataCreateType != null" >
+        data_create_type = #{dataCreateType,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveTime != null" >
+        RESERVE_TIME = #{reserveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountName != null" >
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctIdenType != null" >
+        ACCT_IDEN_TYPE = #{acctIdenType,jdbcType=VARCHAR},
+      </if>
+      <if test="acctIdenNum != null" >
+        ACCT_IDEN_NUM = #{acctIdenNum,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNo != null" >
+        ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null" >
+        ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBankid != null" >
+        ACCOUNT_BANKID = #{accountBankid,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBranchNo != null" >
+        ACCOUNT_BRANCH_NO = #{accountBranchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBankName != null" >
+        ACCOUNT_BANK_NAME = #{accountBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="publicPrivate != null" >
+        PUBLIC_PRIVATE = #{publicPrivate,jdbcType=VARCHAR},
+      </if>
+      <if test="actProvince != null" >
+        ACT_PROVINCE = #{actProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCity != null" >
+        ACCOUNT_CITY = #{accountCity,jdbcType=VARCHAR},
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE = #{updateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.finance.bean.RepaymentRecord" >
+    update nplm_repayment_record
+    set BUSINESS_REQUEST_ID = #{businessRequestId,jdbcType=INTEGER},
+      LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=INTEGER},
+      REPAYMENT_DATE = #{repaymentDate,jdbcType=DATE},
+      OVERDUE_DAYS = #{overdueDays,jdbcType=INTEGER},
+      OVERDUE_AMOUNT = #{overdueAmount,jdbcType=INTEGER},
+      REPAYMENT_AMOUNT = #{repaymentAmount,jdbcType=INTEGER},
+      SUCCESS_AMOUNT = #{successAmount,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      SPECIAL_CODE = #{specialCode,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      data_create_type = #{dataCreateType,jdbcType=VARCHAR},
+      RESERVE_TIME = #{reserveTime,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      ACCT_IDEN_TYPE = #{acctIdenType,jdbcType=VARCHAR},
+      ACCT_IDEN_NUM = #{acctIdenNum,jdbcType=VARCHAR},
+      ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR},
+      ACCOUNT_TYPE = #{accountType,jdbcType=VARCHAR},
+      ACCOUNT_BANKID = #{accountBankid,jdbcType=VARCHAR},
+      ACCOUNT_BRANCH_NO = #{accountBranchNo,jdbcType=VARCHAR},
+      ACCOUNT_BANK_NAME = #{accountBankName,jdbcType=VARCHAR},
+      PUBLIC_PRIVATE = #{publicPrivate,jdbcType=VARCHAR},
+      ACT_PROVINCE = #{actProvince,jdbcType=VARCHAR},
+      ACCOUNT_CITY = #{accountCity,jdbcType=VARCHAR},
+      UPDATE_TYPE = #{updateType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.finance.dao.RepaymentPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.finance.bean.RepaymentPlan" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="LOAN_CONTRACT_NUM" property="loanContractNum" jdbcType="INTEGER" />
+    <result column="INSTALMENT" property="instalment" jdbcType="INTEGER" />
+    <result column="PRE_REPAYMENT_DATE" property="preRepaymentDate" jdbcType="DATE" />
+    <result column="REPAYMENT_DATE" property="repaymentDate" jdbcType="DATE" />
+    <result column="CAPITAL" property="capital" jdbcType="INTEGER" />
+    <result column="INTEREST" property="interest" jdbcType="INTEGER" />
+    <result column="INSTALLMENT_FEE" property="installmentFee" jdbcType="INTEGER" />
+    <result column="AMERCE" property="amerce" jdbcType="INTEGER" />
+    <result column="FORFEIT" property="forfeit" jdbcType="INTEGER" />
+    <result column="PENALTY" property="penalty" jdbcType="INTEGER" />
+    <result column="change_fee" property="changeFee" jdbcType="INTEGER" />
+    <result column="OTHER_FEE" property="otherFee" jdbcType="INTEGER" />
+    <result column="REPAYMENT_AMOUNT" property="repaymentAmount" jdbcType="INTEGER" />
+    <result column="INDEED_CAPITAL" property="indeedCapital" jdbcType="INTEGER" />
+    <result column="INDEED_INTEREST" property="indeedInterest" jdbcType="INTEGER" />
+    <result column="INDEED_INST_FEE" property="indeedInstFee" jdbcType="INTEGER" />
+    <result column="INDEED_AMERCE" property="indeedAmerce" jdbcType="INTEGER" />
+    <result column="INDEED_FORFEIT" property="indeedForfeit" jdbcType="INTEGER" />
+    <result column="indeed_penalty" property="indeedPenalty" jdbcType="INTEGER" />
+    <result column="indeed_change_fee" property="indeedChangeFee" jdbcType="INTEGER" />
+    <result column="indeed_OTHER_FEE" property="indeedOtherFee" jdbcType="INTEGER" />
+    <result column="INDEED_AMOUNT" property="indeedAmount" jdbcType="INTEGER" />
+    <result column="reduce_CAPITAL" property="reduceCapital" jdbcType="INTEGER" />
+    <result column="reduce_INTEREST" property="reduceInterest" jdbcType="INTEGER" />
+    <result column="reduce_AMERCE" property="reduceAmerce" jdbcType="INTEGER" />
+    <result column="reduce_FORFEIT" property="reduceForfeit" jdbcType="INTEGER" />
+    <result column="reduce_INST_FEE" property="reduceInstFee" jdbcType="INTEGER" />
+    <result column="reduce_penalty" property="reducePenalty" jdbcType="INTEGER" />
+    <result column="reduce_PRE_FEE" property="reducePreFee" jdbcType="INTEGER" />
+    <result column="reduce_OTHER_FEE" property="reduceOtherFee" jdbcType="INTEGER" />
+    <result column="REMAIN_CAPITAL" property="remainCapital" jdbcType="INTEGER" />
+    <result column="NPV_remain_capital" property="npvRemainCapital" jdbcType="INTEGER" />
+    <result column="ALL_REPAYMENT_AMOUNT" property="allRepaymentAmount" jdbcType="INTEGER" />
+    <result column="REPAYMENT_STATE" property="repaymentState" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATER" property="updater" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="IS_OPERATING" property="isOperating" jdbcType="VARCHAR" />
+    <result column="UPDATE_TYPE" property="updateType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, LOAN_CONTRACT_NUM, INSTALMENT, PRE_REPAYMENT_DATE, REPAYMENT_DATE, CAPITAL, INTEREST, 
+    INSTALLMENT_FEE, AMERCE, FORFEIT, PENALTY, change_fee, OTHER_FEE, REPAYMENT_AMOUNT, 
+    INDEED_CAPITAL, INDEED_INTEREST, INDEED_INST_FEE, INDEED_AMERCE, INDEED_FORFEIT, 
+    indeed_penalty, indeed_change_fee, indeed_OTHER_FEE, INDEED_AMOUNT, reduce_CAPITAL, 
+    reduce_INTEREST, reduce_AMERCE, reduce_FORFEIT, reduce_INST_FEE, reduce_penalty, 
+    reduce_PRE_FEE, reduce_OTHER_FEE, REMAIN_CAPITAL, NPV_remain_capital, ALL_REPAYMENT_AMOUNT, 
+    REPAYMENT_STATE, REMARK, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME, IS_OPERATING, 
+    UPDATE_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.atguigu.finance.bean.RepaymentPlanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from nplm_repayment_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from nplm_repayment_plan
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from nplm_repayment_plan
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atguigu.finance.bean.RepaymentPlanExample" >
+    delete from nplm_repayment_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.finance.bean.RepaymentPlan" >
+    insert into nplm_repayment_plan (ID, LOAN_CONTRACT_NUM, INSTALMENT, 
+      PRE_REPAYMENT_DATE, REPAYMENT_DATE, CAPITAL, 
+      INTEREST, INSTALLMENT_FEE, AMERCE, 
+      FORFEIT, PENALTY, change_fee, 
+      OTHER_FEE, REPAYMENT_AMOUNT, INDEED_CAPITAL, 
+      INDEED_INTEREST, INDEED_INST_FEE, INDEED_AMERCE, 
+      INDEED_FORFEIT, indeed_penalty, indeed_change_fee, 
+      indeed_OTHER_FEE, INDEED_AMOUNT, reduce_CAPITAL, 
+      reduce_INTEREST, reduce_AMERCE, reduce_FORFEIT, 
+      reduce_INST_FEE, reduce_penalty, reduce_PRE_FEE, 
+      reduce_OTHER_FEE, REMAIN_CAPITAL, NPV_remain_capital, 
+      ALL_REPAYMENT_AMOUNT, REPAYMENT_STATE, REMARK, 
+      CREATOR, CREATE_TIME, UPDATER, 
+      UPDATE_TIME, IS_OPERATING, UPDATE_TYPE
+      )
+    values (#{id,jdbcType=INTEGER}, #{loanContractNum,jdbcType=INTEGER}, #{instalment,jdbcType=INTEGER}, 
+      #{preRepaymentDate,jdbcType=DATE}, #{repaymentDate,jdbcType=DATE}, #{capital,jdbcType=INTEGER}, 
+      #{interest,jdbcType=INTEGER}, #{installmentFee,jdbcType=INTEGER}, #{amerce,jdbcType=INTEGER}, 
+      #{forfeit,jdbcType=INTEGER}, #{penalty,jdbcType=INTEGER}, #{changeFee,jdbcType=INTEGER}, 
+      #{otherFee,jdbcType=INTEGER}, #{repaymentAmount,jdbcType=INTEGER}, #{indeedCapital,jdbcType=INTEGER}, 
+      #{indeedInterest,jdbcType=INTEGER}, #{indeedInstFee,jdbcType=INTEGER}, #{indeedAmerce,jdbcType=INTEGER}, 
+      #{indeedForfeit,jdbcType=INTEGER}, #{indeedPenalty,jdbcType=INTEGER}, #{indeedChangeFee,jdbcType=INTEGER}, 
+      #{indeedOtherFee,jdbcType=INTEGER}, #{indeedAmount,jdbcType=INTEGER}, #{reduceCapital,jdbcType=INTEGER}, 
+      #{reduceInterest,jdbcType=INTEGER}, #{reduceAmerce,jdbcType=INTEGER}, #{reduceForfeit,jdbcType=INTEGER}, 
+      #{reduceInstFee,jdbcType=INTEGER}, #{reducePenalty,jdbcType=INTEGER}, #{reducePreFee,jdbcType=INTEGER}, 
+      #{reduceOtherFee,jdbcType=INTEGER}, #{remainCapital,jdbcType=INTEGER}, #{npvRemainCapital,jdbcType=INTEGER}, 
+      #{allRepaymentAmount,jdbcType=INTEGER}, #{repaymentState,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isOperating,jdbcType=VARCHAR}, #{updateType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.finance.bean.RepaymentPlan" >
+    insert into nplm_repayment_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="loanContractNum != null" >
+        LOAN_CONTRACT_NUM,
+      </if>
+      <if test="instalment != null" >
+        INSTALMENT,
+      </if>
+      <if test="preRepaymentDate != null" >
+        PRE_REPAYMENT_DATE,
+      </if>
+      <if test="repaymentDate != null" >
+        REPAYMENT_DATE,
+      </if>
+      <if test="capital != null" >
+        CAPITAL,
+      </if>
+      <if test="interest != null" >
+        INTEREST,
+      </if>
+      <if test="installmentFee != null" >
+        INSTALLMENT_FEE,
+      </if>
+      <if test="amerce != null" >
+        AMERCE,
+      </if>
+      <if test="forfeit != null" >
+        FORFEIT,
+      </if>
+      <if test="penalty != null" >
+        PENALTY,
+      </if>
+      <if test="changeFee != null" >
+        change_fee,
+      </if>
+      <if test="otherFee != null" >
+        OTHER_FEE,
+      </if>
+      <if test="repaymentAmount != null" >
+        REPAYMENT_AMOUNT,
+      </if>
+      <if test="indeedCapital != null" >
+        INDEED_CAPITAL,
+      </if>
+      <if test="indeedInterest != null" >
+        INDEED_INTEREST,
+      </if>
+      <if test="indeedInstFee != null" >
+        INDEED_INST_FEE,
+      </if>
+      <if test="indeedAmerce != null" >
+        INDEED_AMERCE,
+      </if>
+      <if test="indeedForfeit != null" >
+        INDEED_FORFEIT,
+      </if>
+      <if test="indeedPenalty != null" >
+        indeed_penalty,
+      </if>
+      <if test="indeedChangeFee != null" >
+        indeed_change_fee,
+      </if>
+      <if test="indeedOtherFee != null" >
+        indeed_OTHER_FEE,
+      </if>
+      <if test="indeedAmount != null" >
+        INDEED_AMOUNT,
+      </if>
+      <if test="reduceCapital != null" >
+        reduce_CAPITAL,
+      </if>
+      <if test="reduceInterest != null" >
+        reduce_INTEREST,
+      </if>
+      <if test="reduceAmerce != null" >
+        reduce_AMERCE,
+      </if>
+      <if test="reduceForfeit != null" >
+        reduce_FORFEIT,
+      </if>
+      <if test="reduceInstFee != null" >
+        reduce_INST_FEE,
+      </if>
+      <if test="reducePenalty != null" >
+        reduce_penalty,
+      </if>
+      <if test="reducePreFee != null" >
+        reduce_PRE_FEE,
+      </if>
+      <if test="reduceOtherFee != null" >
+        reduce_OTHER_FEE,
+      </if>
+      <if test="remainCapital != null" >
+        REMAIN_CAPITAL,
+      </if>
+      <if test="npvRemainCapital != null" >
+        NPV_remain_capital,
+      </if>
+      <if test="allRepaymentAmount != null" >
+        ALL_REPAYMENT_AMOUNT,
+      </if>
+      <if test="repaymentState != null" >
+        REPAYMENT_STATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="isOperating != null" >
+        IS_OPERATING,
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loanContractNum != null" >
+        #{loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="instalment != null" >
+        #{instalment,jdbcType=INTEGER},
+      </if>
+      <if test="preRepaymentDate != null" >
+        #{preRepaymentDate,jdbcType=DATE},
+      </if>
+      <if test="repaymentDate != null" >
+        #{repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="capital != null" >
+        #{capital,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=INTEGER},
+      </if>
+      <if test="installmentFee != null" >
+        #{installmentFee,jdbcType=INTEGER},
+      </if>
+      <if test="amerce != null" >
+        #{amerce,jdbcType=INTEGER},
+      </if>
+      <if test="forfeit != null" >
+        #{forfeit,jdbcType=INTEGER},
+      </if>
+      <if test="penalty != null" >
+        #{penalty,jdbcType=INTEGER},
+      </if>
+      <if test="changeFee != null" >
+        #{changeFee,jdbcType=INTEGER},
+      </if>
+      <if test="otherFee != null" >
+        #{otherFee,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentAmount != null" >
+        #{repaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="indeedCapital != null" >
+        #{indeedCapital,jdbcType=INTEGER},
+      </if>
+      <if test="indeedInterest != null" >
+        #{indeedInterest,jdbcType=INTEGER},
+      </if>
+      <if test="indeedInstFee != null" >
+        #{indeedInstFee,jdbcType=INTEGER},
+      </if>
+      <if test="indeedAmerce != null" >
+        #{indeedAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="indeedForfeit != null" >
+        #{indeedForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="indeedPenalty != null" >
+        #{indeedPenalty,jdbcType=INTEGER},
+      </if>
+      <if test="indeedChangeFee != null" >
+        #{indeedChangeFee,jdbcType=INTEGER},
+      </if>
+      <if test="indeedOtherFee != null" >
+        #{indeedOtherFee,jdbcType=INTEGER},
+      </if>
+      <if test="indeedAmount != null" >
+        #{indeedAmount,jdbcType=INTEGER},
+      </if>
+      <if test="reduceCapital != null" >
+        #{reduceCapital,jdbcType=INTEGER},
+      </if>
+      <if test="reduceInterest != null" >
+        #{reduceInterest,jdbcType=INTEGER},
+      </if>
+      <if test="reduceAmerce != null" >
+        #{reduceAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="reduceForfeit != null" >
+        #{reduceForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="reduceInstFee != null" >
+        #{reduceInstFee,jdbcType=INTEGER},
+      </if>
+      <if test="reducePenalty != null" >
+        #{reducePenalty,jdbcType=INTEGER},
+      </if>
+      <if test="reducePreFee != null" >
+        #{reducePreFee,jdbcType=INTEGER},
+      </if>
+      <if test="reduceOtherFee != null" >
+        #{reduceOtherFee,jdbcType=INTEGER},
+      </if>
+      <if test="remainCapital != null" >
+        #{remainCapital,jdbcType=INTEGER},
+      </if>
+      <if test="npvRemainCapital != null" >
+        #{npvRemainCapital,jdbcType=INTEGER},
+      </if>
+      <if test="allRepaymentAmount != null" >
+        #{allRepaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentState != null" >
+        #{repaymentState,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOperating != null" >
+        #{isOperating,jdbcType=VARCHAR},
+      </if>
+      <if test="updateType != null" >
+        #{updateType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atguigu.finance.bean.RepaymentPlanExample" resultType="java.lang.Integer" >
+    select count(*) from nplm_repayment_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update nplm_repayment_plan
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.loanContractNum != null" >
+        LOAN_CONTRACT_NUM = #{record.loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.instalment != null" >
+        INSTALMENT = #{record.instalment,jdbcType=INTEGER},
+      </if>
+      <if test="record.preRepaymentDate != null" >
+        PRE_REPAYMENT_DATE = #{record.preRepaymentDate,jdbcType=DATE},
+      </if>
+      <if test="record.repaymentDate != null" >
+        REPAYMENT_DATE = #{record.repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="record.capital != null" >
+        CAPITAL = #{record.capital,jdbcType=INTEGER},
+      </if>
+      <if test="record.interest != null" >
+        INTEREST = #{record.interest,jdbcType=INTEGER},
+      </if>
+      <if test="record.installmentFee != null" >
+        INSTALLMENT_FEE = #{record.installmentFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.amerce != null" >
+        AMERCE = #{record.amerce,jdbcType=INTEGER},
+      </if>
+      <if test="record.forfeit != null" >
+        FORFEIT = #{record.forfeit,jdbcType=INTEGER},
+      </if>
+      <if test="record.penalty != null" >
+        PENALTY = #{record.penalty,jdbcType=INTEGER},
+      </if>
+      <if test="record.changeFee != null" >
+        change_fee = #{record.changeFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherFee != null" >
+        OTHER_FEE = #{record.otherFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.repaymentAmount != null" >
+        REPAYMENT_AMOUNT = #{record.repaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedCapital != null" >
+        INDEED_CAPITAL = #{record.indeedCapital,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedInterest != null" >
+        INDEED_INTEREST = #{record.indeedInterest,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedInstFee != null" >
+        INDEED_INST_FEE = #{record.indeedInstFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedAmerce != null" >
+        INDEED_AMERCE = #{record.indeedAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedForfeit != null" >
+        INDEED_FORFEIT = #{record.indeedForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedPenalty != null" >
+        indeed_penalty = #{record.indeedPenalty,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedChangeFee != null" >
+        indeed_change_fee = #{record.indeedChangeFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedOtherFee != null" >
+        indeed_OTHER_FEE = #{record.indeedOtherFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.indeedAmount != null" >
+        INDEED_AMOUNT = #{record.indeedAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.reduceCapital != null" >
+        reduce_CAPITAL = #{record.reduceCapital,jdbcType=INTEGER},
+      </if>
+      <if test="record.reduceInterest != null" >
+        reduce_INTEREST = #{record.reduceInterest,jdbcType=INTEGER},
+      </if>
+      <if test="record.reduceAmerce != null" >
+        reduce_AMERCE = #{record.reduceAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="record.reduceForfeit != null" >
+        reduce_FORFEIT = #{record.reduceForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="record.reduceInstFee != null" >
+        reduce_INST_FEE = #{record.reduceInstFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.reducePenalty != null" >
+        reduce_penalty = #{record.reducePenalty,jdbcType=INTEGER},
+      </if>
+      <if test="record.reducePreFee != null" >
+        reduce_PRE_FEE = #{record.reducePreFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.reduceOtherFee != null" >
+        reduce_OTHER_FEE = #{record.reduceOtherFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.remainCapital != null" >
+        REMAIN_CAPITAL = #{record.remainCapital,jdbcType=INTEGER},
+      </if>
+      <if test="record.npvRemainCapital != null" >
+        NPV_remain_capital = #{record.npvRemainCapital,jdbcType=INTEGER},
+      </if>
+      <if test="record.allRepaymentAmount != null" >
+        ALL_REPAYMENT_AMOUNT = #{record.allRepaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.repaymentState != null" >
+        REPAYMENT_STATE = #{record.repaymentState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updater != null" >
+        UPDATER = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isOperating != null" >
+        IS_OPERATING = #{record.isOperating,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateType != null" >
+        UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update nplm_repayment_plan
+    set ID = #{record.id,jdbcType=INTEGER},
+      LOAN_CONTRACT_NUM = #{record.loanContractNum,jdbcType=INTEGER},
+      INSTALMENT = #{record.instalment,jdbcType=INTEGER},
+      PRE_REPAYMENT_DATE = #{record.preRepaymentDate,jdbcType=DATE},
+      REPAYMENT_DATE = #{record.repaymentDate,jdbcType=DATE},
+      CAPITAL = #{record.capital,jdbcType=INTEGER},
+      INTEREST = #{record.interest,jdbcType=INTEGER},
+      INSTALLMENT_FEE = #{record.installmentFee,jdbcType=INTEGER},
+      AMERCE = #{record.amerce,jdbcType=INTEGER},
+      FORFEIT = #{record.forfeit,jdbcType=INTEGER},
+      PENALTY = #{record.penalty,jdbcType=INTEGER},
+      change_fee = #{record.changeFee,jdbcType=INTEGER},
+      OTHER_FEE = #{record.otherFee,jdbcType=INTEGER},
+      REPAYMENT_AMOUNT = #{record.repaymentAmount,jdbcType=INTEGER},
+      INDEED_CAPITAL = #{record.indeedCapital,jdbcType=INTEGER},
+      INDEED_INTEREST = #{record.indeedInterest,jdbcType=INTEGER},
+      INDEED_INST_FEE = #{record.indeedInstFee,jdbcType=INTEGER},
+      INDEED_AMERCE = #{record.indeedAmerce,jdbcType=INTEGER},
+      INDEED_FORFEIT = #{record.indeedForfeit,jdbcType=INTEGER},
+      indeed_penalty = #{record.indeedPenalty,jdbcType=INTEGER},
+      indeed_change_fee = #{record.indeedChangeFee,jdbcType=INTEGER},
+      indeed_OTHER_FEE = #{record.indeedOtherFee,jdbcType=INTEGER},
+      INDEED_AMOUNT = #{record.indeedAmount,jdbcType=INTEGER},
+      reduce_CAPITAL = #{record.reduceCapital,jdbcType=INTEGER},
+      reduce_INTEREST = #{record.reduceInterest,jdbcType=INTEGER},
+      reduce_AMERCE = #{record.reduceAmerce,jdbcType=INTEGER},
+      reduce_FORFEIT = #{record.reduceForfeit,jdbcType=INTEGER},
+      reduce_INST_FEE = #{record.reduceInstFee,jdbcType=INTEGER},
+      reduce_penalty = #{record.reducePenalty,jdbcType=INTEGER},
+      reduce_PRE_FEE = #{record.reducePreFee,jdbcType=INTEGER},
+      reduce_OTHER_FEE = #{record.reduceOtherFee,jdbcType=INTEGER},
+      REMAIN_CAPITAL = #{record.remainCapital,jdbcType=INTEGER},
+      NPV_remain_capital = #{record.npvRemainCapital,jdbcType=INTEGER},
+      ALL_REPAYMENT_AMOUNT = #{record.allRepaymentAmount,jdbcType=INTEGER},
+      REPAYMENT_STATE = #{record.repaymentState,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{record.updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      IS_OPERATING = #{record.isOperating,jdbcType=VARCHAR},
+      UPDATE_TYPE = #{record.updateType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.finance.bean.RepaymentPlan" >
+    update nplm_repayment_plan
+    <set >
+      <if test="loanContractNum != null" >
+        LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="instalment != null" >
+        INSTALMENT = #{instalment,jdbcType=INTEGER},
+      </if>
+      <if test="preRepaymentDate != null" >
+        PRE_REPAYMENT_DATE = #{preRepaymentDate,jdbcType=DATE},
+      </if>
+      <if test="repaymentDate != null" >
+        REPAYMENT_DATE = #{repaymentDate,jdbcType=DATE},
+      </if>
+      <if test="capital != null" >
+        CAPITAL = #{capital,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null" >
+        INTEREST = #{interest,jdbcType=INTEGER},
+      </if>
+      <if test="installmentFee != null" >
+        INSTALLMENT_FEE = #{installmentFee,jdbcType=INTEGER},
+      </if>
+      <if test="amerce != null" >
+        AMERCE = #{amerce,jdbcType=INTEGER},
+      </if>
+      <if test="forfeit != null" >
+        FORFEIT = #{forfeit,jdbcType=INTEGER},
+      </if>
+      <if test="penalty != null" >
+        PENALTY = #{penalty,jdbcType=INTEGER},
+      </if>
+      <if test="changeFee != null" >
+        change_fee = #{changeFee,jdbcType=INTEGER},
+      </if>
+      <if test="otherFee != null" >
+        OTHER_FEE = #{otherFee,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentAmount != null" >
+        REPAYMENT_AMOUNT = #{repaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="indeedCapital != null" >
+        INDEED_CAPITAL = #{indeedCapital,jdbcType=INTEGER},
+      </if>
+      <if test="indeedInterest != null" >
+        INDEED_INTEREST = #{indeedInterest,jdbcType=INTEGER},
+      </if>
+      <if test="indeedInstFee != null" >
+        INDEED_INST_FEE = #{indeedInstFee,jdbcType=INTEGER},
+      </if>
+      <if test="indeedAmerce != null" >
+        INDEED_AMERCE = #{indeedAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="indeedForfeit != null" >
+        INDEED_FORFEIT = #{indeedForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="indeedPenalty != null" >
+        indeed_penalty = #{indeedPenalty,jdbcType=INTEGER},
+      </if>
+      <if test="indeedChangeFee != null" >
+        indeed_change_fee = #{indeedChangeFee,jdbcType=INTEGER},
+      </if>
+      <if test="indeedOtherFee != null" >
+        indeed_OTHER_FEE = #{indeedOtherFee,jdbcType=INTEGER},
+      </if>
+      <if test="indeedAmount != null" >
+        INDEED_AMOUNT = #{indeedAmount,jdbcType=INTEGER},
+      </if>
+      <if test="reduceCapital != null" >
+        reduce_CAPITAL = #{reduceCapital,jdbcType=INTEGER},
+      </if>
+      <if test="reduceInterest != null" >
+        reduce_INTEREST = #{reduceInterest,jdbcType=INTEGER},
+      </if>
+      <if test="reduceAmerce != null" >
+        reduce_AMERCE = #{reduceAmerce,jdbcType=INTEGER},
+      </if>
+      <if test="reduceForfeit != null" >
+        reduce_FORFEIT = #{reduceForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="reduceInstFee != null" >
+        reduce_INST_FEE = #{reduceInstFee,jdbcType=INTEGER},
+      </if>
+      <if test="reducePenalty != null" >
+        reduce_penalty = #{reducePenalty,jdbcType=INTEGER},
+      </if>
+      <if test="reducePreFee != null" >
+        reduce_PRE_FEE = #{reducePreFee,jdbcType=INTEGER},
+      </if>
+      <if test="reduceOtherFee != null" >
+        reduce_OTHER_FEE = #{reduceOtherFee,jdbcType=INTEGER},
+      </if>
+      <if test="remainCapital != null" >
+        REMAIN_CAPITAL = #{remainCapital,jdbcType=INTEGER},
+      </if>
+      <if test="npvRemainCapital != null" >
+        NPV_remain_capital = #{npvRemainCapital,jdbcType=INTEGER},
+      </if>
+      <if test="allRepaymentAmount != null" >
+        ALL_REPAYMENT_AMOUNT = #{allRepaymentAmount,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentState != null" >
+        REPAYMENT_STATE = #{repaymentState,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null" >
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOperating != null" >
+        IS_OPERATING = #{isOperating,jdbcType=VARCHAR},
+      </if>
+      <if test="updateType != null" >
+        UPDATE_TYPE = #{updateType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.finance.bean.RepaymentPlan" >
+    update nplm_repayment_plan
+    set LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=INTEGER},
+      INSTALMENT = #{instalment,jdbcType=INTEGER},
+      PRE_REPAYMENT_DATE = #{preRepaymentDate,jdbcType=DATE},
+      REPAYMENT_DATE = #{repaymentDate,jdbcType=DATE},
+      CAPITAL = #{capital,jdbcType=INTEGER},
+      INTEREST = #{interest,jdbcType=INTEGER},
+      INSTALLMENT_FEE = #{installmentFee,jdbcType=INTEGER},
+      AMERCE = #{amerce,jdbcType=INTEGER},
+      FORFEIT = #{forfeit,jdbcType=INTEGER},
+      PENALTY = #{penalty,jdbcType=INTEGER},
+      change_fee = #{changeFee,jdbcType=INTEGER},
+      OTHER_FEE = #{otherFee,jdbcType=INTEGER},
+      REPAYMENT_AMOUNT = #{repaymentAmount,jdbcType=INTEGER},
+      INDEED_CAPITAL = #{indeedCapital,jdbcType=INTEGER},
+      INDEED_INTEREST = #{indeedInterest,jdbcType=INTEGER},
+      INDEED_INST_FEE = #{indeedInstFee,jdbcType=INTEGER},
+      INDEED_AMERCE = #{indeedAmerce,jdbcType=INTEGER},
+      INDEED_FORFEIT = #{indeedForfeit,jdbcType=INTEGER},
+      indeed_penalty = #{indeedPenalty,jdbcType=INTEGER},
+      indeed_change_fee = #{indeedChangeFee,jdbcType=INTEGER},
+      indeed_OTHER_FEE = #{indeedOtherFee,jdbcType=INTEGER},
+      INDEED_AMOUNT = #{indeedAmount,jdbcType=INTEGER},
+      reduce_CAPITAL = #{reduceCapital,jdbcType=INTEGER},
+      reduce_INTEREST = #{reduceInterest,jdbcType=INTEGER},
+      reduce_AMERCE = #{reduceAmerce,jdbcType=INTEGER},
+      reduce_FORFEIT = #{reduceForfeit,jdbcType=INTEGER},
+      reduce_INST_FEE = #{reduceInstFee,jdbcType=INTEGER},
+      reduce_penalty = #{reducePenalty,jdbcType=INTEGER},
+      reduce_PRE_FEE = #{reducePreFee,jdbcType=INTEGER},
+      reduce_OTHER_FEE = #{reduceOtherFee,jdbcType=INTEGER},
+      REMAIN_CAPITAL = #{remainCapital,jdbcType=INTEGER},
+      NPV_remain_capital = #{npvRemainCapital,jdbcType=INTEGER},
+      ALL_REPAYMENT_AMOUNT = #{allRepaymentAmount,jdbcType=INTEGER},
+      REPAYMENT_STATE = #{repaymentState,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      IS_OPERATING = #{isOperating,jdbcType=VARCHAR},
+      UPDATE_TYPE = #{updateType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
