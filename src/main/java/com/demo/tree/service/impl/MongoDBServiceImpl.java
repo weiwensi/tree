@@ -2,6 +2,7 @@ package com.demo.tree.service.impl;
 
 
 import com.demo.tree.bean.Permission;
+import com.demo.tree.bean.Student;
 import com.demo.tree.service.MongoDBService;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -16,23 +17,14 @@ import java.util.List;
 public class MongoDBServiceImpl implements MongoDBService {
     @Resource
     private MongoTemplate mongoTemplate;
-    //加载tree，查询所有
-    public List<Permission> queryAllPermission() {
+    public List<Student> queryAllPermission() {
 
-        List<Permission> allpermission = mongoTemplate.findAll(Permission.class);
-        return allpermission;
+        List<Student> allStudent = mongoTemplate.findAll(Student.class);
+        return allStudent;
     }
    //保存
-    public int savePermission(Permission permission) {
-        //mongoTemplate.save(permission);
-       /* private Integer id;
-        private String icon;*/
-      //  String s = UUID.randomUUID().toString();
-        double random = Math.random();
-        int i= (int) random;
-        permission.setId(i);
-        permission.setIcon(null);
-        mongoTemplate.insert(permission);
+    public int savePermission(Student student) {
+        mongoTemplate.insert(student);
         return 0;
     }
     //根据id查找

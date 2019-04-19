@@ -1,7 +1,9 @@
 package com.demo.tree.bean;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "student'")
 public class Student {
-   /* {name:"孙悟空",sex:"男",age:20,address:"花果山"});*/
     private String name;
     private  String sex;
     private Integer age;
