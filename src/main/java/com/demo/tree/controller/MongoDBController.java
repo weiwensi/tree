@@ -5,6 +5,7 @@ import com.demo.tree.bean.Student;
 import com.demo.tree.service.MongoDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,15 +26,16 @@ public class MongoDBController {
     @ResponseBody
     @RequestMapping("/permission/loadData")
     public  List<Student> loadData(){
-        List<Student> permissions = mongoDBService.queryAllPermission();
+        List<Student> permissions = mongoDBService.queryAll();
 
         return permissions;
     }
     //执行添加
     @RequestMapping("/permission/doAdd")
     @ResponseBody
-    public void  doAdd(Student student){
-        mongoDBService.savePermission( student);
+    public String  doAdd(){
+        mongoDBService.saveStudent( );
+        return  "add success";
     }
     //跳到修改页面，进行数据的回显
     @RequestMapping("/permission/toUpdate.do")
@@ -55,16 +57,6 @@ public class MongoDBController {
 
 
 
-/*
-
-    @ResponseBody
-    @RequestMapping("update")
-    public  String udate(){
-        mongoDBService.doUpdate(permission);
-        return "ok";
-    }
-
-*/
 
 
 }

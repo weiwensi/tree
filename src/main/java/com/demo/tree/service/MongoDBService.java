@@ -6,9 +6,9 @@ import com.demo.tree.bean.Student;
 import java.util.List;
 
 public interface MongoDBService {
-    List<Student> queryAllPermission();
+    List<Student> queryAll();
     //保存许可
-    int savePermission(Student student);
+    int saveStudent();
     //根据id查询许可
     Permission getPermissionByID(Integer id);
     //更新许可

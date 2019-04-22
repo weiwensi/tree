@@ -11,20 +11,36 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MongoDBServiceImpl implements MongoDBService {
     @Resource
     private MongoTemplate mongoTemplate;
-    public List<Student> queryAllPermission() {
+    public List<Student> queryAll() {
 
         List<Student> allStudent = mongoTemplate.findAll(Student.class);
         return allStudent;
     }
    //保存
-    public int savePermission(Student student) {
-        mongoTemplate.insert(student);
+    public int saveStudent( ) {
+
+        Student student1 = new Student();
+        student1.setName("ddd");
+        student1.setSex("1");
+        student1.setAge(0);
+        student1.setAddress("sfsffsfd");
+
+        Student student2 = new Student();
+        student2.setName("测试测试");
+        student2.setSex("34");
+        student2.setAge(0);
+        student2.setAddress("手动阀十分");
+
+
+        List<Student>  students=new ArrayList<Student>();
+        mongoTemplate.insert(students,Student.class);
         return 0;
     }
     //根据id查找
@@ -34,6 +50,9 @@ public class MongoDBServiceImpl implements MongoDBService {
         return permission;
     }
 
+    public void doUpdate(Student student) {
+
+    }
 
 
     //更新

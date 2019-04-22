@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="finance" target="1.5" />
-      <module name="ssm-mongodb" target="1.5" />
+      <module name="ssm-mongodb" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
